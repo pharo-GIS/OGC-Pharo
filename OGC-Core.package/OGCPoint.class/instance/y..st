@@ -1,3 +1,3 @@
 accessing
 y: aFloat
-y:= aFloat
+	y:= aFloat

@@ -1,15 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "OGCGeometry",
+	"super" : "OGCGeometryCollection",
 	"category" : "OGC-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"x",
-		"y",
-		"z"
-	],
-	"name" : "OGCPoint",
+	"instvars" : [ ],
+	"name" : "OGCMultiCurve",
 	"type" : "normal"
 }

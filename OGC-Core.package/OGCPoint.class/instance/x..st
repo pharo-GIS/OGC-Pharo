@@ -1,4 +1,3 @@
 accessing
 x: aFloat
-
-x:= aFloat 
+	x:= aFloat 

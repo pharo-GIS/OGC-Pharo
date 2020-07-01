@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"x",
-		"y",
-		"z"
-	],
-	"name" : "OGCPoint",
+	"instvars" : [ ],
+	"name" : "OGCCurve",
 	"type" : "normal"
 }
