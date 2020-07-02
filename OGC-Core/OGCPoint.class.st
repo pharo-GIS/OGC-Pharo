@@ -36,6 +36,11 @@ OGCPoint >> dimension [
 	^ 0
 ]
 
+{ #category : #testing }
+OGCPoint >> is3D [ 
+	^ z notNil
+]
+
 { #category : #printing }
 OGCPoint >> printOn: aStream [ 
 	aStream << x asString << ',' << y asString.

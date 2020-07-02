@@ -8,5 +8,10 @@ A Line is a LineString with exactly 2 Points.
 Class {
 	#name : #OGCLine,
 	#superclass : #OGCLineString,
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCLine class >> geometryType [
+	^ 'Line'
+]

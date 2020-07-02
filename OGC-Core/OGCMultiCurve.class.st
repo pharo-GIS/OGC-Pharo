@@ -18,5 +18,10 @@ A MultiCurve is defined as topologically closed.
 Class {
 	#name : #OGCMultiCurve,
 	#superclass : #OGCGeometryCollection,
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCMultiCurve class >> geometryType [
+	^ 'MultiCurve'
+]

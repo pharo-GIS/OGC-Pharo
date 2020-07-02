@@ -9,5 +9,10 @@ that is a LinearRing. The Curve in Figure 2, item (d) is a closed LineString tha
 Class {
 	#name : #OGCLinearRing,
 	#superclass : #OGCLineString,
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCLinearRing class >> geometryType [
+	^ 'LinearRing'
+]

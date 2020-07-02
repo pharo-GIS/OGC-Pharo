@@ -11,5 +11,10 @@ The boundary of a MultiPoint is the empty set.
 Class {
 	#name : #OGCMultiPoint,
 	#superclass : #OGCGeometryCollection,
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCMultiPoint class >> geometryType [
+	^ 'MultiPoint'
+]

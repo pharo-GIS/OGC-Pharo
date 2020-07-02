@@ -10,5 +10,18 @@ LineString, which uses linear interpolation between Points.
 Class {
 	#name : #OGCCurve,
 	#superclass : #OGCGeometry,
-	#category : 'OGC-Core'
+	#instVars : [
+		'points'
+	],
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCCurve >> points [
+	^ points
+]
+
+{ #category : #accessing }
+OGCCurve >> points: anObject [
+	points := anObject
+]

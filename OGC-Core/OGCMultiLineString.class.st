@@ -8,3 +8,8 @@ Class {
 	#superclass : #OGCMultiCurve,
 	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCMultiLineString class >> geometryType [
+	^ 'MultiLineString'
+]

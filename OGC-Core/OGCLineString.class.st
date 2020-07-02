@@ -9,5 +9,10 @@ segment.
 Class {
 	#name : #OGCLineString,
 	#superclass : #OGCCurve,
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCLineString class >> geometryType [
+	^ 'LineString'
+]

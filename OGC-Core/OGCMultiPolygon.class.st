@@ -22,3 +22,8 @@ Class {
 	#superclass : #OGCMultiSurface,
 	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCMultiPolygon class >> geometryType [
+	^ 'MultiPolygon'
+]

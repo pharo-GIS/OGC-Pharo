@@ -18,5 +18,40 @@ only as a tangent, e.g.
 Class {
 	#name : #OGCPolygon,
 	#superclass : #OGCSurface,
-	#category : 'OGC-Core'
+	#instVars : [
+		'exterorRing',
+		'interiorRings'
+	],
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCPolygon class >> geometryType [
+	^ 'Polygon'
+]
+
+{ #category : #accessing }
+OGCPolygon >> addInteriorRing: anOGCLinearRing [
+	interiorRings add: anOGCLinearRing 
+]
+
+{ #category : #accessing }
+OGCPolygon >> exterorRing [
+	^ exterorRing
+]
+
+{ #category : #accessing }
+OGCPolygon >> exterorRing: anObject [
+	exterorRing := anObject
+]
+
+{ #category : #accessing }
+OGCPolygon >> interiorRings [
+	^ interiorRings ifNil: [ 
+		interiorRings := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+OGCPolygon >> interiorRings: anObject [
+	interiorRings := anObject
+]
