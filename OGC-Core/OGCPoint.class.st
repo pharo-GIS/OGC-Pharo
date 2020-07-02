@@ -16,7 +16,7 @@ Class {
 		'y',
 		'z'
 	],
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
 
 { #category : #accessing }
@@ -38,7 +38,9 @@ OGCPoint >> dimension [
 
 { #category : #printing }
 OGCPoint >> printOn: aStream [ 
-	aStream << x asString << ',' << y asString
+	aStream << x asString << ',' << y asString.
+	z ifNotNil: [ 
+		aStream << ',' << z asString ]
 ]
 
 { #category : #accessing }
