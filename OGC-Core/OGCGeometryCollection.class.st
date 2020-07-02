@@ -13,5 +13,18 @@ elements.
 Class {
 	#name : #OGCGeometryCollection,
 	#superclass : #OGCGeometry,
-	#category : 'OGC-Core'
+	#instVars : [
+		'geometries'
+	],
+	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCGeometryCollection >> geometries [
+	^ geometries
+]
+
+{ #category : #accessing }
+OGCGeometryCollection >> geometries: anObject [
+	geometries := anObject
+]
