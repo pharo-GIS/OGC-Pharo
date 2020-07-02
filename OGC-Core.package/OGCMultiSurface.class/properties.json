@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "NorbertHartl 7/1/2020 17:53",
+	"super" : "OGCGeometryCollection",
+	"category" : "OGC-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "OGCMultiSurface",
+	"type" : "normal"
+}

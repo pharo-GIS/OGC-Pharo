@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "NorbertHartl 7/1/2020 17:51",
+	"super" : "OGCLineString",
+	"category" : "OGC-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "OGCLinearRing",
+	"type" : "normal"
+}
