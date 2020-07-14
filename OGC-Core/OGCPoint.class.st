@@ -33,7 +33,12 @@ OGCPoint class >> x: xNumber y: yNumber [
 
 { #category : #comparing }
 OGCPoint >> = anOGCPoint [
-	^ (x = anOGCPoint x) & (y = anOGCPoint y)
+	^ (x = anOGCPoint x) & (y = anOGCPoint y) & (z = anOGCPoint z)
+]
+
+{ #category : #conversion }
+OGCPoint >> asPoint [
+	^ x @ y
 ]
 
 { #category : #accessing }
@@ -43,7 +48,7 @@ OGCPoint >> dimension [
 
 { #category : #comparing }
 OGCPoint >> hash [ 
-	^ x hash xor: y hash
+	^ (x hash bitXor: y hash) bitXor: z hash
 ]
 
 { #category : #testing }
@@ -82,6 +87,11 @@ OGCPoint >> roundTo: grid [
 	^ OGCPoint 
 		x: (x roundTo: gridPoint x) 
 		y: (y roundTo: gridPoint y)
+]
+
+{ #category : #geometry }
+OGCPoint >> to: end1 intersects: start2 to: end2 [ 
+	^ self asPoint to: end1 intersects: start2 to: end2
 ]
 
 { #category : #accessing }
