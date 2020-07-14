@@ -31,9 +31,19 @@ OGCPoint class >> x: xNumber y: yNumber [
 		y: yNumber 
 ]
 
+{ #category : #comparing }
+OGCPoint >> = anOGCPoint [
+	^ (x = anOGCPoint x) & (y = anOGCPoint y)
+]
+
 { #category : #accessing }
 OGCPoint >> dimension [
 	^ 0
+]
+
+{ #category : #comparing }
+OGCPoint >> hash [ 
+	^ x hash xor: y hash
 ]
 
 { #category : #testing }
@@ -41,11 +51,37 @@ OGCPoint >> is3D [
 	^ z notNil
 ]
 
+{ #category : #accessing }
+OGCPoint >> max: anOGCPoint [ 
+
+	^ OGCPoint 
+		x: (x max: anOGCPoint x) 
+		y: (y max: anOGCPoint y)
+]
+
+{ #category : #accessing }
+OGCPoint >> min: anOGCPoint [ 
+
+	^ OGCPoint 
+		x: (x min: anOGCPoint x) 
+		y: (y min: anOGCPoint y)
+]
+
 { #category : #printing }
 OGCPoint >> printOn: aStream [ 
 	aStream << x asString << ',' << y asString.
 	z ifNotNil: [ 
 		aStream << ',' << z asString ]
+]
+
+{ #category : #'truncation and round off' }
+OGCPoint >> roundTo: grid [
+	
+	| gridPoint |
+	gridPoint := grid asOGCPoint.
+	^ OGCPoint 
+		x: (x roundTo: gridPoint x) 
+		y: (y roundTo: gridPoint y)
 ]
 
 { #category : #accessing }
