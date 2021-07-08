@@ -32,6 +32,11 @@ OGCGeometry class >> isAbstract [
 	^ true
 ]
 
+{ #category : #testing }
+OGCGeometry >> = anotherGeometry [
+	self subclassResponsibility 
+]
+
 { #category : #basic }
 OGCGeometry >> SRID [
 	"Returns the Spatial Reference System ID for this geometric object. This will normally be a
@@ -108,11 +113,6 @@ polygon is defined by the corner points of the bounding box [(MINX, MINY), (MAXX
 (MINX, MAXY), (MINX, MINY)]. Minimums for Z and M may be added. The simplest representation of an
 Envelope is as two direct positions, one containing all the minimums, and another all the maximums. In some
 cases, this coordinate will be outside the range of validity for the Spatial Reference System"
-	self subclassResponsibility 
-]
-
-{ #category : #testing }
-OGCGeometry >> equals: anotherGeometry [
 	self subclassResponsibility 
 ]
 

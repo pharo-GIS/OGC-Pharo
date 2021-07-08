@@ -9,7 +9,12 @@ Class {
 
 { #category : #accessing }
 OGCEmptySet class >> geometryType [ 
-	 'Empty set'
+	 ^ 'Empty set'
+]
+
+{ #category : #testing }
+OGCEmptySet >> = anotherObject [
+	^ self isEmpty = anotherObject isEmpty
 ]
 
 { #category : #basic }

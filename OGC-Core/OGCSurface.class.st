@@ -12,5 +12,11 @@ onto the same plane is an isomorphism, and can be represented as a linear transf
 Class {
 	#name : #OGCSurface,
 	#superclass : #OGCGeometry,
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
+
+{ #category : #basic }
+OGCSurface >> dimension [ 
+	"The inherent dimension of this geometric object, which must be less than or equal to the coordinate dimension."
+	^ 2
+]

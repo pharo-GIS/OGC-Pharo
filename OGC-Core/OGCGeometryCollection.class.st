@@ -29,7 +29,7 @@ OGCGeometryCollection >> geometries: anObject [
 	geometries := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 OGCGeometryCollection >> geometryN: index [
 	"Returns the Nth geometry in this GeometryCollection"	
 	^ geometries at: index
