@@ -14,7 +14,8 @@ Class {
 	#instVars : [
 		'x',
 		'y',
-		'z'
+		'z',
+		'm'
 	],
 	#category : #'OGC-Core'
 }
@@ -41,6 +42,15 @@ OGCPoint >> asPoint [
 	^ x @ y
 ]
 
+{ #category : #basic }
+OGCPoint >> boundary [
+	"Geometry — Returns the closure of the combinatorial boundary of this geometric object
+(Reference [1], section 3.12.2). Because the result of this function is a closure, and hence topologically
+closed, the resulting boundary can be represented using representational Geometry primitives (Reference [1],
+section 3.12.2). The return type is integer, but is interpreted as Boolean, TRUE=1, FALSE=0."
+	^ nil 
+]
+
 { #category : #accessing }
 OGCPoint >> dimension [
 	^ 0
@@ -54,6 +64,16 @@ OGCPoint >> hash [
 { #category : #testing }
 OGCPoint >> is3D [ 
 	^ z notNil
+]
+
+{ #category : #accessing }
+OGCPoint >> m [
+	^ m
+]
+
+{ #category : #accessing }
+OGCPoint >> m: aFloat [
+	m := aFloat
 ]
 
 { #category : #accessing }

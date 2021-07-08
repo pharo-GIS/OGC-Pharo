@@ -16,3 +16,15 @@ Class {
 OGCLineString class >> geometryType [
 	^ 'LineString'
 ]
+
+{ #category : #access }
+OGCLineString >> numPoints [
+	"The number of Points in this LineString"
+	^ points size
+]
+
+{ #category : #access }
+OGCLineString >> pointN: anInteger [
+	"Returns the specified Point N in this LineString"
+	^ points at: anInteger 
+]

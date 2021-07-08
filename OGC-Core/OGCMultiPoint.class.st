@@ -18,3 +18,9 @@ Class {
 OGCMultiPoint class >> geometryType [
 	^ 'MultiPoint'
 ]
+
+{ #category : #accessing }
+OGCMultiPoint >> dimension [ 
+	"The inherent dimension of this geometric object, which must be less than or equal to the coordinate dimension."
+	^ 0 
+]
