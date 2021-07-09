@@ -22,13 +22,9 @@ OGCCurve class >> geometryType [
 ]
 
 { #category : #'as yet unclassified' }
-OGCCurve class >> points: aCollectionOfPoints [
-	^ self new points: aCollectionOfPoints 
-]
-
-{ #category : #'as yet unclassified' }
 OGCCurve class >> withPoints: aCollectionOfPoints [
 	^ self new points: aCollectionOfPoints 
+	
 ]
 
 { #category : #testing }

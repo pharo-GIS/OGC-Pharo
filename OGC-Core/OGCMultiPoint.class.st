@@ -50,9 +50,7 @@ OGCMultiPoint >> isSimple [
 OGCMultiPoint >> locateAlong: mValue [
 	"Returns a derived geometry collection value that matches the
 specified m coordinate value. See Subclause 6.1.2.6 “Measures on Geometry” for more details"
-	| resultPoints |
-	resultPoints := self geometries select: [ :each | each m == mValue ].
-	^ self class withPoints: resultPoints
+	^ self locateBetween: mValue and: mValue
 ]
 
 { #category : #testing }

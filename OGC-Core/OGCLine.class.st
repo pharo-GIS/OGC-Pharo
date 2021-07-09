@@ -11,9 +11,21 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #'as yet unclassified' }
+OGCLine class >> errorTooManyPoints: anInteger [
+	TooManyPoints signalWith: anInteger
+]
+
 { #category : #accessing }
 OGCLine class >> geometryType [
 	^ 'Line'
+]
+
+{ #category : #'as yet unclassified' }
+OGCLine class >> withPoints: aCollectionOfPoints [
+	(aCollectionOfPoints size = 2) 
+		ifTrue: [ ^ self new points: aCollectionOfPoints ]
+		ifFalse: [ self errorTooManyPoints: aCollectionOfPoints size]
 ]
 
 { #category : #accessing }
