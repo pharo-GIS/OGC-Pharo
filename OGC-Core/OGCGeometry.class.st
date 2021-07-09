@@ -19,6 +19,10 @@ closed, i.e. all represented geometries include their boundary as point sets. Th
 Class {
 	#name : #OGCGeometry,
 	#superclass : #Object,
+	#instVars : [
+		'spatialRS',
+		'measureRSs'
+	],
 	#category : #'OGC-Core'
 }
 
@@ -120,6 +124,11 @@ cases, this coordinate will be outside the range of validity for the Spatial Ref
 OGCGeometry >> geometryType [
 	"Returns the name of the instantiable subtype of Geometry of which this geometric object is an instantiable member"
 	^ self class geometryType
+]
+
+{ #category : #'private-initialization' }
+OGCGeometry >> initialize [
+	spatialRS := OGCMercatorProjection
 ]
 
 { #category : #'methods analysis' }

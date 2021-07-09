@@ -13,7 +13,7 @@ OGCMultiPointTest >> testLocateAlong [
 	mp := OGCMultiPoint withPoints: points.
 	result := mp locateAlong: 4.
 	self assert: result class equals: OGCMultiPoint.
-	self assert: (result geometries contains: [ :each | each class = OGCPoint ])
+	self assert: (result geometries allSatisfy: [ :each | each class = OGCPoint ])
 ]
 
 { #category : #tests }

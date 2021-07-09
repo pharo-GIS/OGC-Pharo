@@ -74,6 +74,14 @@ OGCPoint >> dimension [
 	^ 0
 ]
 
+{ #category : #'methods analysis' }
+OGCPoint >> distance: anotherGeometry [
+	"Only a distance between two points is covered here..."
+	(anotherGeometry geometryType = 'Point') 
+		ifTrue: [ ^ spatialRS distanceFromPoint: self toPoint: anotherGeometry  ]
+	
+]
+
 { #category : #comparing }
 OGCPoint >> hash [ 
 	^ (x hash bitXor: y hash) bitXor: z hash
@@ -82,6 +90,11 @@ OGCPoint >> hash [
 { #category : #testing }
 OGCPoint >> is3D [ 
 	^ z notNil
+]
+
+{ #category : #basic }
+OGCPoint >> isMeasured [
+	^ m isNotNil
 ]
 
 { #category : #testing }

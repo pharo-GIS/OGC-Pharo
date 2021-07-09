@@ -62,11 +62,6 @@ OGCCurveTest >> testCurveIsSimple [
 ]
 
 { #category : #tests }
-OGCCurveTest >> testCurveLength [
-	self assert: c length equals: 4.
-]
-
-{ #category : #tests }
 OGCCurveTest >> testCurveStartPoint [
 	self assert: c startPoint equals: (OGCPoint x: 0 y: 0)
 ]

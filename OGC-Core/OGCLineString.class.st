@@ -17,6 +17,19 @@ OGCLineString class >> geometryType [
 	^ 'LineString'
 ]
 
+{ #category : #accessing }
+OGCLineString >> length [
+	^ self length: points allButFirst withValue: 0 andStartedPoint: points first
+]
+
+{ #category : #initialization }
+OGCLineString >> length: aCollectionOfPoints withValue: aLength andStartedPoint: aPoint [
+	^ aCollectionOfPoints 
+			ifEmpty: [ aLength ]
+			ifNotEmpty: 
+			[ self length: aCollectionOfPoints allButFirst withValue: aLength + (aPoint distance: aCollectionOfPoints first) andStartedPoint: aCollectionOfPoints first ]
+]
+
 { #category : #access }
 OGCLineString >> numPoints [
 	"The number of Points in this LineString"

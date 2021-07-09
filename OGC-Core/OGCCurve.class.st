@@ -39,7 +39,7 @@ OGCCurve >> = anotherCurve [
 { #category : #basic }
 OGCCurve >> boundary [
 	"The boundary of a non-closed Curve consists of its two end Points. The boundary of a closed Curve is empty."
-	self isClosed ifFalse: [ ^ OGCCurve withPoints: (OrderedCollection with: (self points allButLast last) with: self endPoint)  ] ifTrue: [ ^ OGCEmptySet new ]
+	self isClosed ifFalse: [ ^ self class withPoints: (OrderedCollection with: (self points allButLast last) with: self endPoint)  ] ifTrue: [ ^ OGCEmptySet new ]
 ]
 
 { #category : #accessing }
@@ -74,7 +74,8 @@ points"
 
 { #category : #accessing }
 OGCCurve >> length [
-	^ points size
+	"The length of this Curve in its associated spatial reference"
+	self subclassResponsibility
 ]
 
 { #category : #accessing }

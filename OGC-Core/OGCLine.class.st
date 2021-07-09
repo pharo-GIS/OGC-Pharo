@@ -15,3 +15,8 @@ Class {
 OGCLine class >> geometryType [
 	^ 'Line'
 ]
+
+{ #category : #accessing }
+OGCLine >> length [
+	^ spatialRS length: self
+]
