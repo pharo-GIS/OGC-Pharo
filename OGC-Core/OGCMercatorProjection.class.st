@@ -12,32 +12,23 @@ Class {
 
 { #category : #'as yet unclassified' }
 OGCMercatorProjection class >> area: aSurface [
-	(aSurface geometryType = 'Triangle') 
-		ifTrue: [ ^ self areaOfTriangle: aSurface ]
+	^ aSurface asGElement area
 ]
 
 { #category : #'as yet unclassified' }
-OGCMercatorProjection class >> areaOfTriangle: aTriangle [
-	| points point1 point2 point3 gPoint1 gPoint2 gPoint3 |
-	points := aTriangle exteriorRing points.
-	point1 := points first.
-	point2 := points second.
-	point3 := points third.
-	gPoint1 := GPoint x: point1 x y: point1 y.
-	gPoint2 := GPoint x: point2 x y: point2 y.
-	gPoint3 := GPoint x: point3 x y: point3 y.
-	^ ( GTriangle with: gPoint1 with: gPoint2 with: gPoint3 ) area
-	
+OGCMercatorProjection class >> distance: aGeometry toPoint: aPoint [
+	^ aGeometry asGElement distanceTo: aPoint asGElement
 ]
 
 { #category : #'as yet unclassified' }
-OGCMercatorProjection class >> distanceFromPoint: aPoint toPoint: anotherGeometry [ 
-	"For now, anotherGeometry is a Point"
-	^ ( GPoint x: aPoint x y: aPoint y ) distanceTo: ( GPoint x: anotherGeometry x y: anotherGeometry y )
+OGCMercatorProjection class >> intersection: aGeometry withLine: aLine [
+	| result |
+	result :=  (aGeometry asGElement intersectionsWithLine: aLine asGElement).
+	(result size = 1) ifTrue: [ ^ result first asOGCElement ] ifFalse: [ ^ result ]
 ]
 
 { #category : #initialization }
 OGCMercatorProjection class >> length: aLine [
 	" Return the distance between two points of a Line"
-	^ self distanceFromPoint: aLine points first toPoint: aLine points second
+	^ aLine asGElement length
 ]

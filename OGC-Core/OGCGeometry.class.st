@@ -48,6 +48,11 @@ foreign key to an index of reference systems stored in either the same or some o
 	self subclassResponsibility 
 ]
 
+{ #category : #converting }
+OGCGeometry >> asGElement [
+	self subclassResponsibility
+]
+
 { #category : #basic }
 OGCGeometry >> boundary [
 	"Geometry — Returns the closure of the combinatorial boundary of this geometric object
