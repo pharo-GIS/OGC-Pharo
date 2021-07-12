@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfOGC,
 	#superclass : #BaselineOf,
-	#category : 'BaselineOfOGC'
+	#category : #BaselineOfOGC
 }
 
 { #category : #baselines }
@@ -16,6 +16,11 @@ BaselineOfOGC >> baseline: spec [
 		spec 
 			group: 'Core' with: #('OGC-Core' );
 			group: 'Tests' with: #('OGC-Core-Tests');
-			group: 'default' with: #('Core' 'Tests'). ].
+			group: 'default' with: #('Core' 'Tests'). 
+			
+		"For Geometric projection computation"
+		spec
+    	baseline: 'Geometry'
+    	with: [ spec repository: 'github://pharo-contributions/Geometry:vmaster/src' ]	].
 
 ]
