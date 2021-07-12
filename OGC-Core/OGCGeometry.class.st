@@ -133,7 +133,7 @@ OGCGeometry >> geometryType [
 
 { #category : #'private-initialization' }
 OGCGeometry >> initialize [
-	spatialRS := OGCMercatorProjection
+	spatialRS := OGCGeometricProjection
 ]
 
 { #category : #'methods analysis' }

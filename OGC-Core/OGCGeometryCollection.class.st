@@ -19,6 +19,11 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #basic }
+OGCGeometryCollection >> dimension [
+	^ geometries sorted: [ :e1 :e2 | e1 dimension > e2 dimension ] first
+]
+
 { #category : #accessing }
 OGCGeometryCollection >> geometries [
 	^ geometries

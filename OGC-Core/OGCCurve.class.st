@@ -55,6 +55,11 @@ OGCCurve >> isClosed [
 ]
 
 { #category : #testing }
+OGCCurve >> isLine [
+	^ points size = 2
+]
+
+{ #category : #testing }
 OGCCurve >> isRing [
 	^ self isClosed & self isSimple
 ]

@@ -32,16 +32,6 @@ OGCLineTest >> testIntersectionWithLine [
 ]
 
 { #category : #tests }
-OGCLineTest >> testIntersectionWithLine2 [
-	| point1a point1b line1 line2|
-	point1a := OGCPoint xy: #(-1 0).
-	point1b := OGCPoint xy: #(1 0).
-	line1 := OGCLine withPoints: (OrderedCollection with: point1a with: point1b).
-	line2 := OGCLine withPoints: (OrderedCollection with: point1a with: point1b).
-	self assert: (line1 intersection: line2) equals: line1
-]
-
-{ #category : #tests }
 OGCLineTest >> testLength [
 	| point1 point2 points |
 	point1 := OGCPoint xy: #(0 0).
