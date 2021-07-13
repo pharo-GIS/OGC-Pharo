@@ -33,7 +33,7 @@ OGCGeometry class >> geometryType [
 
 { #category : #testing }
 OGCGeometry class >> isAbstract [
-	^ true
+	^ self == OGCGeometry
 ]
 
 { #category : #testing }

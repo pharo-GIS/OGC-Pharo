@@ -20,7 +20,7 @@ Class {
 
 { #category : #testing }
 OGCSurface class >> isAbstract [
-	^ true
+	^ self == OGCSurface 
 ]
 
 { #category : #basic }

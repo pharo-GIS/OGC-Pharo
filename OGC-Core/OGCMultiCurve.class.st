@@ -28,7 +28,7 @@ OGCMultiCurve class >> geometryType [
 
 { #category : #testing }
 OGCMultiCurve class >> isAbstract [
-	^ true
+	^ self == OGCMultiCurve
 ]
 
 { #category : #basic }
