@@ -21,6 +21,6 @@ BaselineOfOGC >> baseline: spec [
 		"For Geometric projection computation"
 		spec
     	baseline: 'Geometry'
-    	with: [ spec repository: 'github://pharo-contributions/Geometry:vmaster/src' ]	].
+    	with: [ spec repository: 'github://pharo-contributions/Geometry:master/src' ]	].
 
 ]
