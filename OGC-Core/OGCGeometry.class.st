@@ -20,8 +20,8 @@ Class {
 	#name : #OGCGeometry,
 	#superclass : #Object,
 	#instVars : [
-		'spatialRS',
-		'measureRSs'
+		'spatialReferenceSystem',
+		'measureReferenceSystems'
 	],
 	#category : #'OGC-Core'
 }
@@ -133,7 +133,7 @@ OGCGeometry >> geometryType [
 
 { #category : #'private-initialization' }
 OGCGeometry >> initialize [
-	spatialRS := OGCGeometricProjection
+	spatialReferenceSystem := OGCGeometricProjection
 ]
 
 { #category : #'methods analysis' }

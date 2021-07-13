@@ -20,7 +20,7 @@ OGCTriangle class >> withExteriorRing: aLineString [
 
 { #category : #basic }
 OGCTriangle >> area [
-	^ spatialRS area: self
+	^ spatialReferenceSystem area: self
 ]
 
 { #category : #'as yet unclassified' }

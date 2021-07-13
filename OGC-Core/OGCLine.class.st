@@ -37,10 +37,10 @@ OGCLine >> asGElement [
 OGCLine >> intersection: anotherGeometry [
 	"Returns a geometric object that represents the
 Point set intersection of this geometric object with anotherGeometry."
-	^ spatialRS intersection: anotherGeometry withLine: self
+	^ spatialReferenceSystem intersection: anotherGeometry withLine: self
 ]
 
 { #category : #accessing }
 OGCLine >> length [
-	^ spatialRS length: self
+	^ spatialReferenceSystem length: self
 ]
