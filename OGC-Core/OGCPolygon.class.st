@@ -19,7 +19,6 @@ Class {
 	#name : #OGCPolygon,
 	#superclass : #OGCSurface,
 	#instVars : [
-		'exterorRing',
 		'interiorRings'
 	],
 	#category : #'OGC-Core'
@@ -36,13 +35,20 @@ OGCPolygon >> addInteriorRing: anOGCLinearRing [
 ]
 
 { #category : #accessing }
-OGCPolygon >> exterorRing [
-	^ exterorRing
+OGCPolygon >> exteriorRing [
+	"Returns the exterior ring of this Polygon as a LineString"
+	^ exteriorRing
 ]
 
 { #category : #accessing }
-OGCPolygon >> exterorRing: anObject [
-	exterorRing := anObject
+OGCPolygon >> exteriorRing: anObject [
+	exteriorRing := anObject
+]
+
+{ #category : #accessing }
+OGCPolygon >> interiorRingN: anInteger [
+	"Returns the Nth interior ring for this Polygon as a LineString."
+	^ interiorRings at: anInteger
 ]
 
 { #category : #accessing }
@@ -54,4 +60,10 @@ OGCPolygon >> interiorRings [
 { #category : #accessing }
 OGCPolygon >> interiorRings: anObject [
 	interiorRings := anObject
+]
+
+{ #category : #accessing }
+OGCPolygon >> numInteriorRing [
+	"Returns the number of interior rings in this Polygon"
+	^ interiorRings size
 ]

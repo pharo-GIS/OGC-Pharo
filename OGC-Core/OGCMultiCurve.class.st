@@ -25,3 +25,24 @@ Class {
 OGCMultiCurve class >> geometryType [
 	^ 'MultiCurve'
 ]
+
+{ #category : #testing }
+OGCMultiCurve class >> isAbstract [
+	^ self == OGCMultiCurve
+]
+
+{ #category : #basic }
+OGCMultiCurve >> dimension [
+	^ 1
+]
+
+{ #category : #testing }
+OGCMultiCurve >> isClosed [
+	"A MultiCurve is closed if all of its elements are closed."
+	^ self geometries allSatisfy: [ :each | each isClosed ]
+]
+
+{ #category : #accessing }
+OGCMultiCurve >> length [
+	^ self geometries sum: [ :each | each length ]
+]

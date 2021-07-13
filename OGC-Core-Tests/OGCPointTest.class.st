@@ -5,6 +5,22 @@ Class {
 }
 
 { #category : #tests }
+OGCPointTest >> testDistance [
+	| point1 point2 |
+	point1 := OGCPoint xy: #(0 1).
+	point2 := OGCPoint xy: #(0 4).
+	self assert: (point1 distance: point2) equals: 3
+]
+
+{ #category : #tests }
+OGCPointTest >> testLocateBetweenWithMValues [ 
+	| point |
+	point := OGCPoint xym: #(7 6 7).
+	self assert: (point locateBetween: 1 and: 4) equals: OGCEmptySet new.
+	self assert: (point locateBetween: 7 and: 7) equals: (OGCMultiPoint withPoints: (Bag with: point)).
+]
+
+{ #category : #tests }
 OGCPointTest >> testPointEqual [
 	| p1 p2 |
 	p1 := OGCPoint x: 1 y: 1.
