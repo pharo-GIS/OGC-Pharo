@@ -10,7 +10,7 @@ OGCLinearRingTest >> testErrorNotALinearRingWithNotClosed [
 	points := OrderedCollection with: (OGCPoint x: 0 y:0).
 	points add: (OGCPoint x:1 y:1) .
 	points add: (OGCPoint x: 2 y:2) .
-	self should: [ OGCLinearRing withPoints: points ] raise: OGCErrorNotALinearRing 
+	self should: [ OGCLinearRing withPoints: points ] raise: OGCNotALinearRingError 
 ]
 
 { #category : #tests }
@@ -19,5 +19,5 @@ OGCLinearRingTest >> testErrorNotALinearRingWithNotSimple [
 	points := OrderedCollection with: (OGCPoint x: 0 y:0) with: (OGCPoint x:1 y:1) .
 	points add: (OGCPoint x:1 y:1) .
 	points add: (OGCPoint x: 0 y:0) .
-	self should: [ OGCLinearRing withPoints: points ] raise: OGCErrorNotALinearRing 
+	self should: [ OGCLinearRing withPoints: points ] raise: OGCNotALinearRingError 
 ]

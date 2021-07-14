@@ -2,7 +2,7 @@
 Error used when too many points are given to instanciate a Line.
 "
 Class {
-	#name : #OGCErrorIncorrectNumberOfPoints,
+	#name : #OGCIncorrectNumberOfPointsError,
 	#superclass : #Error,
 	#instVars : [
 		'size'
@@ -11,26 +11,26 @@ Class {
 }
 
 { #category : #signalling }
-OGCErrorIncorrectNumberOfPoints class >> signalWith: anInteger [
+OGCIncorrectNumberOfPointsError class >> signalWith: anInteger [
 	^ self new
 		size: anInteger;
 		signal
 ]
 
 { #category : #accessing }
-OGCErrorIncorrectNumberOfPoints >> messageText [
+OGCIncorrectNumberOfPointsError >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
 { #category : #accessing }
-OGCErrorIncorrectNumberOfPoints >> size: anInteger [
+OGCIncorrectNumberOfPointsError >> size: anInteger [
 	size := anInteger
 ]
 
 { #category : #printing }
-OGCErrorIncorrectNumberOfPoints >> standardMessageText [
+OGCIncorrectNumberOfPointsError >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

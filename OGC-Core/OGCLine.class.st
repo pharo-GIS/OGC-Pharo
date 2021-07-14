@@ -13,7 +13,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 OGCLine class >> errorIncorrectNumberOfPoints: anInteger [
-	OGCErrorIncorrectNumberOfPoints signalWith: anInteger
+	OGCIncorrectNumberOfPointsError signalWith: anInteger
 ]
 
 { #category : #accessing }

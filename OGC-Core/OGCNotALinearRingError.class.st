@@ -2,7 +2,7 @@
 When a linear ring wants to be instantiate but is not simple or is not closed
 "
 Class {
-	#name : #OGCErrorNotALinearRing,
+	#name : #OGCNotALinearRingError,
 	#superclass : #Error,
 	#instVars : [
 		'isSimple',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #signalling }
-OGCErrorNotALinearRing class >> signal: answerIsClosed and: answerIsSimple [
+OGCNotALinearRingError class >> signal: answerIsClosed and: answerIsSimple [
 	^ self new
 		isSimple: answerIsClosed;
 		isClosed: answerIsClosed;
@@ -20,24 +20,24 @@ OGCErrorNotALinearRing class >> signal: answerIsClosed and: answerIsSimple [
 ]
 
 { #category : #accessing }
-OGCErrorNotALinearRing >> isClosed: aBoolean [
+OGCNotALinearRingError >> isClosed: aBoolean [
 	isClosed := aBoolean
 ]
 
 { #category : #accessing }
-OGCErrorNotALinearRing >> isSimple: aBoolean [
+OGCNotALinearRingError >> isSimple: aBoolean [
 	isSimple := aBoolean
 ]
 
 { #category : #accessing }
-OGCErrorNotALinearRing >> messageText [
+OGCNotALinearRingError >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
 { #category : #printing }
-OGCErrorNotALinearRing >> standardMessageText [
+OGCNotALinearRingError >> standardMessageText [
 	"Generate a standard textual description"
 	| isClosedMessage isSimpleMessage |
 	isClosedMessage := isClosed 
