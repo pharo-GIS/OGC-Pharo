@@ -16,7 +16,7 @@ OGCLineTest >> testErrorTooManyPoints [
 	points := OrderedCollection with: point1.
 	points add: point2.
 	points add: point3.
-	self should: [ OGCLine withPoints: points ] raise: OGCErrorIncorrectNumberOfPoints
+	self should: [ OGCLine withPoints: points ] raise: OGCIncorrectNumberOfPointsError
 ]
 
 { #category : #tests }

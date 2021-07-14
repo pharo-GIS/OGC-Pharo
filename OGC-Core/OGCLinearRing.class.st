@@ -19,7 +19,7 @@ OGCLinearRing class >> geometryType [
 
 { #category : #'as yet unclassified' }
 OGCLinearRing class >> notALinearRing: isClosed and: isSimple [
-	OGCErrorNotALinearRing signal: isClosed and: isSimple
+	OGCNotALinearRingError signal: isClosed and: isSimple
 ]
 
 { #category : #'as yet unclassified' }
