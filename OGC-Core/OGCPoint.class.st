@@ -40,12 +40,12 @@ OGCPoint class >> x: xNumber y: yNumber m:mNumber [
 		m: mNumber
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : #'instance creation' }
 OGCPoint class >> xy: anArray [
 	^ self x: anArray first y: anArray second
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 OGCPoint class >> xym: anArray [
 	^ self x: anArray first y: anArray second m: anArray last
 ]

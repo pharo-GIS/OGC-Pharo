@@ -16,5 +16,10 @@ MultiSurface.
 Class {
 	#name : #OGCMultiSurface,
 	#superclass : #OGCGeometryCollection,
-	#category : 'OGC-Core'
+	#category : #'OGC-Core'
 }
+
+{ #category : #testing }
+OGCMultiSurface class >> isAbstract [
+	^ self = OGCMultiSurface 
+]

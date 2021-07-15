@@ -19,6 +19,11 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #testing }
+OGCGeometryCollection class >> isAbstract [
+	^ self = OGCGeometryCollection 
+]
+
 { #category : #basic }
 OGCGeometryCollection >> dimension [
 	^ geometries sorted: [ :e1 :e2 | e1 dimension > e2 dimension ] first

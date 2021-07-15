@@ -18,7 +18,7 @@ closed, i.e. all represented geometries include their boundary as point sets. Th
 "
 Class {
 	#name : #OGCGeometry,
-	#superclass : #Object,
+	#superclass : #OGCObject,
 	#instVars : [
 		'spatialReferenceSystem',
 		'measureReferenceSystems'
