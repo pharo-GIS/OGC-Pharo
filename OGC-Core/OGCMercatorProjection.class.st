@@ -12,8 +12,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 OGCMercatorProjection class >> area: aSurface [
-	(aSurface geometryType = 'Triangle') 
-		ifTrue: [ ^ self areaOfTriangle: aSurface ]
+	^ aSurface asGElement area 
 ]
 
 { #category : #'as yet unclassified' }
@@ -31,13 +30,19 @@ OGCMercatorProjection class >> areaOfTriangle: aTriangle [
 ]
 
 { #category : #'as yet unclassified' }
-OGCMercatorProjection class >> distanceFromPoint: aPoint toPoint: anotherGeometry [ 
-	"For now, anotherGeometry is a Point"
-	^ ( GPoint x: aPoint x y: aPoint y ) distanceTo: ( GPoint x: anotherGeometry x y: anotherGeometry y )
+OGCMercatorProjection class >> distance: aGeometry toPoint: aPoint [
+	^ aGeometry asGElement distanceTo: aPoint asGElement
+]
+
+{ #category : #'as yet unclassified' }
+OGCMercatorProjection class >> intersection: aGeometry withLine: aLine [
+	| result | 
+	result :=  (aGeometry asGElement intersectionsWithLine: aLine asGElement). 
+	(result size = 1) ifTrue: [ ^ result first asOGCElement ] ifFalse: [ ^ result ] 
 ]
 
 { #category : #initialization }
 OGCMercatorProjection class >> length: aLine [
 	" Return the distance between two points of a Line"
-	^ self distanceFromPoint: aLine points first toPoint: aLine points second
+	^ aLine asGElement length 
 ]

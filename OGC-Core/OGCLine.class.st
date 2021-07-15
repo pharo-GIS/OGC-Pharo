@@ -13,7 +13,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 OGCLine class >> errorTooManyPoints: anInteger [
-	TooManyPoints signalWith: anInteger
+	IncorrectNumberOfPoints signalWith: anInteger
 ]
 
 { #category : #accessing }
@@ -26,6 +26,18 @@ OGCLine class >> withPoints: aCollectionOfPoints [
 	(aCollectionOfPoints size = 2) 
 		ifTrue: [ ^ self new points: aCollectionOfPoints ]
 		ifFalse: [ self errorTooManyPoints: aCollectionOfPoints size]
+]
+
+{ #category : #converting }
+OGCLine >> asGElement [
+	^ GSegment with: points first asGElement with: points second asGElement 
+]
+
+{ #category : #'methods analysis' }
+OGCLine >> intersection: anotherGeometry [
+	"Returns a geometric object that represents the 
+Point set intersection of this geometric object with anotherGeometry." 
+	^ spatialRS intersection: anotherGeometry withLine: self 
 ]
 
 { #category : #accessing }

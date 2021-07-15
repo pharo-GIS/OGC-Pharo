@@ -55,6 +55,11 @@ OGCPoint >> = anOGCPoint [
 	^ (x = anOGCPoint x) & (y = anOGCPoint y) & (z = anOGCPoint z)
 ]
 
+{ #category : #converting }
+OGCPoint >> asGElement [
+	^ GPoint x: x y: y
+]
+
 { #category : #conversion }
 OGCPoint >> asPoint [
 	^ x @ y
@@ -76,10 +81,7 @@ OGCPoint >> dimension [
 
 { #category : #'methods analysis' }
 OGCPoint >> distance: anotherGeometry [
-	"Only a distance between two points is covered here..."
-	(anotherGeometry geometryType = 'Point') 
-		ifTrue: [ ^ spatialRS distanceFromPoint: self toPoint: anotherGeometry  ]
-	
+	^ spatialRS distance: self toPoint: anotherGeometry 
 ]
 
 { #category : #comparing }

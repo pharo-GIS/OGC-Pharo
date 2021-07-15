@@ -2,7 +2,7 @@
 Error used when too many points are given to instanciate a Line.
 "
 Class {
-	#name : #TooManyPoints,
+	#name : #IncorrectNumberOfPoints,
 	#superclass : #Error,
 	#instVars : [
 		'size'
@@ -11,26 +11,26 @@ Class {
 }
 
 { #category : #signalling }
-TooManyPoints class >> signalWith: anInteger [
+IncorrectNumberOfPoints class >> signalWith: anInteger [
 	^ self new
 		size: anInteger;
 		signal
 ]
 
 { #category : #accessing }
-TooManyPoints >> messageText [
+IncorrectNumberOfPoints >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
 { #category : #accessing }
-TooManyPoints >> size: anInteger [
+IncorrectNumberOfPoints >> size: anInteger [
 	size := anInteger
 ]
 
 { #category : #printing }
-TooManyPoints >> standardMessageText [
+IncorrectNumberOfPoints >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |
