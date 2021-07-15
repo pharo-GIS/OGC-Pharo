@@ -20,8 +20,8 @@ BaselineOfOGC >> baseline: spec [
 		spec 
 			group: 'Core' with: #('OGC-Core' );
 			group: 'Tests' with: #('OGC-Core-Tests');
-			group: 'Geometric' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
-			group: 'default' with: #('Core' 'Tests'). 
+			group: 'Geometry' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
+			group: 'default' with: #('Core' 'Tests Geometry'). 
 			
 		"For Geometric projection computation"
 		spec
