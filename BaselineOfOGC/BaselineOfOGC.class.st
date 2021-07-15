@@ -27,11 +27,6 @@ BaselineOfOGC >> baseline: spec [
 		spec
     	baseline: 'Geometry'
     	with: [ spec repository: 'github://pharo-contributions/Geometry:master/src' ].	
-		
-		"For GeoJSON Parser"
-		spec
-    	baseline: 'GeoJSON'
-    	with: [ spec repository: 'github://zweidenker/geojson:master/src' ]
 	
 		].
 
