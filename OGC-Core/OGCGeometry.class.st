@@ -131,11 +131,6 @@ OGCGeometry >> geometryType [
 	^ self class geometryType
 ]
 
-{ #category : #'private-initialization' }
-OGCGeometry >> initialize [
-	spatialReferenceSystem := OGCGeometricProjection
-]
-
 { #category : #'methods analysis' }
 OGCGeometry >> intersection: anotherGeometry [
 	"Returns a geometric object that represents the
