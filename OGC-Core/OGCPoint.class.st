@@ -81,7 +81,7 @@ OGCPoint >> dimension [
 
 { #category : #'methods analysis' }
 OGCPoint >> distance: anotherGeometry [
-	^ spatialRS distance: self toPoint: anotherGeometry 
+	^ spatialReferenceSystem distance: self toPoint: anotherGeometry
 ]
 
 { #category : #comparing }
