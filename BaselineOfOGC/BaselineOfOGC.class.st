@@ -13,7 +13,7 @@ BaselineOfOGC >> baseline: spec [
 			package: #'OGC-Core';
 			package: #'OGC-Core-Tests' with: [
 				spec requires: #('OGC-Core' ) ];
-			package: #'OGC-Geomety' with: [ 
+			package: #'OGC-Geometry' with: [ 
 				spec requires: #('OGC-Core' 'Geometry') ];
 			package: #'OGC-Geometry-Tests' with: [ 
 				spec requires: #('OGC-Core-Tests' 'OGC-Geometry') ].
