@@ -2,8 +2,7 @@ Class {
 	#name : #OGCFeature,
 	#superclass : #OGCObject,
 	#instVars : [
-		'geometry',
-		'properties'
+		'geometry'
 	],
 	#category : #'OGC-Core'
 }

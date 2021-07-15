@@ -1,6 +1,9 @@
 Class {
 	#name : #OGCObject,
 	#superclass : #Object,
+	#instVars : [
+		'properties'
+	],
 	#category : #'OGC-Core'
 }
 
