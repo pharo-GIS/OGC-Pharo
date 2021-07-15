@@ -2,7 +2,9 @@ Class {
 	#name : #OGCFeature,
 	#superclass : #OGCObject,
 	#instVars : [
-		'geometry'
+		'geometry',
+		'properties',
+		'id'
 	],
 	#category : #'OGC-Core'
 }
