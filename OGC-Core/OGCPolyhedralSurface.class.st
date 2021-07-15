@@ -8,6 +8,11 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #accessing }
+OGCPolyhedralSurface class >> geometryType [
+	^ 'PolyhedralSurface'
+]
+
 { #category : #'as yet unclassified' }
 OGCPolyhedralSurface >> boundingPolygon: aPolygon [
 	"Returns the collection of polygons MultiPolygon, in this surface that bounds the given polygon for any polygon in the surface"
