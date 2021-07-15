@@ -25,7 +25,7 @@ OGCLine class >> geometryType [
 OGCLine class >> withPoints: aCollectionOfPoints [
 	(aCollectionOfPoints size = 2) 
 		ifTrue: [ ^ self new points: aCollectionOfPoints ]
-		ifFalse: [ self errorTooManyPoints: aCollectionOfPoints size]
+		ifFalse: [ self errorIncorrectNumberOfPoints: aCollectionOfPoints size]
 ]
 
 { #category : #converting }
