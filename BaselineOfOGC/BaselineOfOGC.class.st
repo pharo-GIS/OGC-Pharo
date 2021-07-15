@@ -13,14 +13,14 @@ BaselineOfOGC >> baseline: spec [
 			package: #'OGC-Core';
 			package: #'OGC-Core-Tests' with: [
 				spec requires: #('OGC-Core' ) ];
-			package: #'OGC-Geometric-Computations' with: [ 
+			package: #'OGC-Geomety' with: [ 
 				spec requires: #('OGC-Core' 'Geometry') ];
-			package: #'OGC-Geometric-Computations-Tests' with: [ 
-				spec requires: #('OGC-Core-Tests' 'OGC-Geometric-Computations') ].
+			package: #'OGC-Geometry-Tests' with: [ 
+				spec requires: #('OGC-Core-Tests' 'OGC-Geometry') ].
 		spec 
 			group: 'Core' with: #('OGC-Core' );
 			group: 'Tests' with: #('OGC-Core-Tests');
-			group: 'Geometric' with: #('OGC-Geometric-Computations' 'OGC-Geometric-Computations-Tests');
+			group: 'Geometric' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
 			group: 'default' with: #('Core' 'Tests'). 
 			
 		"For Geometric projection computation"
