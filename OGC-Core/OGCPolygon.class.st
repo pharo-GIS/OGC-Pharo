@@ -29,6 +29,15 @@ OGCPolygon class >> geometryType [
 	^ 'Polygon'
 ]
 
+{ #category : #testing }
+OGCPolygon >> = anotherPolygon [
+	^ self class = anotherPolygon class and: 
+		[ self interiorRings = anotherPolygon interiorRings
+			and: 
+			[ self exteriorRing  = anotherPolygon exteriorRing ] 
+			]
+]
+
 { #category : #accessing }
 OGCPolygon >> addInteriorRing: anOGCLinearRing [
 	interiorRings add: anOGCLinearRing 
