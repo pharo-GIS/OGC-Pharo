@@ -1,3 +1,8 @@
+"
+A reference system contains:
+- exactly one spatial reference system
+- one measure reference system if needed
+"
 Class {
 	#name : #OGCReferenceSystem,
 	#superclass : #Object,
