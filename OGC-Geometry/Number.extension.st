@@ -1,6 +1,6 @@
 Extension { #name : #Number }
 
-{ #category : #'*OGC-Core' }
+{ #category : #'*OGC-Geometry' }
 Number >> asOGCPoint [
 	"Answer a Point with the receiver as both coordinates; often used to 
 	supply the same value in two dimensions, as with symmetrical gridding 

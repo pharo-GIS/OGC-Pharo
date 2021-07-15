@@ -14,7 +14,8 @@ Class {
 	#instVars : [
 		'x',
 		'y',
-		'z'
+		'z',
+		'm'
 	],
 	#category : #'OGC-Core'
 }
@@ -31,9 +32,32 @@ OGCPoint class >> x: xNumber y: yNumber [
 		y: yNumber 
 ]
 
+{ #category : #'instance creation' }
+OGCPoint class >> x: xNumber y: yNumber m:mNumber [
+	^ self new 
+		x: xNumber;
+		y: yNumber;
+		m: mNumber
+]
+
+{ #category : #'instance creation' }
+OGCPoint class >> xy: anArray [
+	^ self x: anArray first y: anArray second
+]
+
+{ #category : #'instance creation' }
+OGCPoint class >> xym: anArray [
+	^ self x: anArray first y: anArray second m: anArray last
+]
+
 { #category : #comparing }
 OGCPoint >> = anOGCPoint [
 	^ (x = anOGCPoint x) & (y = anOGCPoint y) & (z = anOGCPoint z)
+]
+
+{ #category : #converting }
+OGCPoint >> asGElement [
+	^ GPoint x: x y: y
 ]
 
 { #category : #conversion }
@@ -41,9 +65,23 @@ OGCPoint >> asPoint [
 	^ x @ y
 ]
 
+{ #category : #basic }
+OGCPoint >> boundary [
+	"Geometry — Returns the closure of the combinatorial boundary of this geometric object
+(Reference [1], section 3.12.2). Because the result of this function is a closure, and hence topologically
+closed, the resulting boundary can be represented using representational Geometry primitives (Reference [1],
+section 3.12.2). The return type is integer, but is interpreted as Boolean, TRUE=1, FALSE=0."
+	^ OGCEmptySet new
+]
+
 { #category : #accessing }
 OGCPoint >> dimension [
 	^ 0
+]
+
+{ #category : #'methods analysis' }
+OGCPoint >> distance: anotherGeometry [
+	^ spatialReferenceSystem distance: self toPoint: anotherGeometry
 ]
 
 { #category : #comparing }
@@ -54,6 +92,31 @@ OGCPoint >> hash [
 { #category : #testing }
 OGCPoint >> is3D [ 
 	^ z notNil
+]
+
+{ #category : #basic }
+OGCPoint >> isMeasured [
+	^ m isNotNil
+]
+
+{ #category : #testing }
+OGCPoint >> locateBetween: mStart and: mEnd [
+	"Returns a derived geometry collection value
+that matches the specified range of m coordinate values inclusively. See Subclause 6.1.2.6 “Measures on
+Geometry” for more details."
+	^ (m >= mStart and: m<= mEnd) 
+			ifTrue: [ OGCMultiPoint withPoints: (Bag with: self) ]
+			ifFalse: [ OGCEmptySet new ]
+]
+
+{ #category : #accessing }
+OGCPoint >> m [
+	^ m
+]
+
+{ #category : #accessing }
+OGCPoint >> m: aFloat [
+	m := aFloat
 ]
 
 { #category : #accessing }

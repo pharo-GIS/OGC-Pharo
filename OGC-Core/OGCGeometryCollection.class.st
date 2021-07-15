@@ -19,6 +19,16 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #testing }
+OGCGeometryCollection class >> isAbstract [
+	^ self = OGCGeometryCollection 
+]
+
+{ #category : #basic }
+OGCGeometryCollection >> dimension [
+	^ geometries sorted: [ :e1 :e2 | e1 dimension > e2 dimension ] first
+]
+
 { #category : #accessing }
 OGCGeometryCollection >> geometries [
 	^ geometries
@@ -27,4 +37,16 @@ OGCGeometryCollection >> geometries [
 { #category : #accessing }
 OGCGeometryCollection >> geometries: anObject [
 	geometries := anObject
+]
+
+{ #category : #accessing }
+OGCGeometryCollection >> geometryN: index [
+	"Returns the Nth geometry in this GeometryCollection"	
+	^ geometries at: index
+]
+
+{ #category : #accessing }
+OGCGeometryCollection >> numGeometries [
+	"cReturns the number of geometries in this GeometryCollection"
+	^ geometries size
 ]

@@ -16,3 +16,17 @@ Class {
 OGCLinearRing class >> geometryType [
 	^ 'LinearRing'
 ]
+
+{ #category : #'as yet unclassified' }
+OGCLinearRing class >> notALinearRing: isClosed and: isSimple [
+	OGCNotALinearRingError signal: isClosed and: isSimple
+]
+
+{ #category : #'as yet unclassified' }
+OGCLinearRing class >> withPoints: aCollectionOfPoints [
+	| lineString |
+	lineString := self superclass withPoints: aCollectionOfPoints.
+	(lineString isRing)
+		ifTrue: [ ^ lineString ]
+		ifFalse: [ self notALinearRing: lineString isClosed and: lineString isSimple]
+]
