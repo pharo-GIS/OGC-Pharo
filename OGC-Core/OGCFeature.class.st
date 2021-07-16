@@ -9,6 +9,11 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #'methods analysis' }
+OGCFeature >> distance: anotherFeature [
+	^ self geometry distance: anotherFeature geometry
+]
+
 { #category : #accessing }
 OGCFeature >> geometry [
 	^ geometry
