@@ -31,6 +31,11 @@ OGCPoint >> worldCoordinates [
 ]
 
 { #category : #'*OGC-Viewer' }
+OGCPoint >> xPixelInTileWithZoom: aZoomLevel [
+	^ (self xPixelWithZoom: aZoomLevel) - ((self tileSize) * (self xTileWithZoom: aZoomLevel))
+]
+
+{ #category : #'*OGC-Viewer' }
 OGCPoint >> xPixelWithZoom: aZoomLevel [
 	^ (self xWorld * (2 ** aZoomLevel)) asInteger
 ]
@@ -43,6 +48,11 @@ OGCPoint >> xTileWithZoom: aZoomLevel [
 { #category : #'*OGC-Viewer' }
 OGCPoint >> xWorld [
 	^ ((self longitude + 180)/360) * self tileSize
+]
+
+{ #category : #'*OGC-Viewer' }
+OGCPoint >> yPixelInTileWithZoom: aZoomLevel [
+	^ (self yPixelWithZoom: aZoomLevel) - ((self tileSize) * (self yTileWithZoom: aZoomLevel))
 ]
 
 { #category : #'*OGC-Viewer' }
