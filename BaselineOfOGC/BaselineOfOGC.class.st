@@ -24,9 +24,9 @@ BaselineOfOGC >> baseline: spec [
 		spec 
 			group: 'Core' with: #('OGC-Core' );
 			group: 'Tests' with: #('OGC-Core-Tests');
-			group: 'OGC-Geometry' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
-			group: 'OGC-Spheric' with: #('OGC-Spheric' 'OGC-Spheric-Tests');
-			group: 'default' with: #('Core' 'Tests' 'OGC-Geometry' 'OGC-Spheric'). 
+			group: 'Geometric' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
+			group: 'Spheric' with: #('OGC-Spheric' 'OGC-Spheric-Tests');
+			group: 'default' with: #('Core' 'Tests' 'Geometric'). 
 			
 		"For Geometric projection computation"
 		spec
