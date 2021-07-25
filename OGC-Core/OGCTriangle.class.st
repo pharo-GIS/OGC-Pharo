@@ -23,13 +23,6 @@ OGCTriangle >> area [
 	^ spatialReferenceSystem area: self
 ]
 
-{ #category : #converting }
-OGCTriangle >> asGElement [
-	| points | 
-	points := exteriorRing points. 
-	^ ( GTriangle with: points first asGElement with: points second asGElement with: points third asGElement ) 
-]
-
 { #category : #basic }
 OGCTriangle >> boundary [
 	^ exteriorRing 

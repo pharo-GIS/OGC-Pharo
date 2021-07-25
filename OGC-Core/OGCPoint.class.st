@@ -55,11 +55,6 @@ OGCPoint >> = anOGCPoint [
 	^ (x = anOGCPoint x) & (y = anOGCPoint y) & (z = anOGCPoint z)
 ]
 
-{ #category : #converting }
-OGCPoint >> asGElement [
-	^ GPoint x: x y: y
-]
-
 { #category : #conversion }
 OGCPoint >> asPoint [
 	^ x @ y
