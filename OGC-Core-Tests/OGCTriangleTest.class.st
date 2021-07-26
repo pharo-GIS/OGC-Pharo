@@ -15,5 +15,7 @@ OGCTriangleTest >> testArea [
 	points add: point3.
 	lineS := OGCLineString withPoints: points.
 	triangle := OGCTriangle withExteriorRing: lineS.
-	self assert: (triangle area round: 4) equals: 0.5
+	(point1 spatialReferenceSystem name = 'Geometric')
+		ifTrue: [ self assert: (triangle area round: 4) equals: 0.5 ]
+	
 ]

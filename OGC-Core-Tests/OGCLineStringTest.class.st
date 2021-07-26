@@ -19,6 +19,8 @@ OGCLineStringTest >> testLength [
 	points add: point3.
 	points add: point4.
 	lineS := OGCLineString withPoints: points.
-	self assert: lineS length equals: 15
+	(point1 spatialReferenceSystem name = 'Geometric')
+		ifTrue: [ self assert: lineS length equals: 15 ]
+	
 
 ]

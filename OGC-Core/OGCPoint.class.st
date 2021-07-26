@@ -137,7 +137,7 @@ OGCPoint >> printOn: aStream [
 		aStream << ',' << z asString ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #geometry }
 OGCPoint >> rectangularEnvelope [
 	^ Dictionary newFromPairs: {'minX' . x . 'maxX' . x . 'minY' . y . 'maxY' . y }
 ]

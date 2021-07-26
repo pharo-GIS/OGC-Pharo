@@ -28,7 +28,7 @@ OGCViewerMorph >> defaultExtent [
 	^ 400@400
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #operations }
 OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel [
 	"only for collections of points for now"
 	| zoom rectangularEnvelope corner00 corner11 minX minY maxX maxY coordNext |
@@ -56,42 +56,42 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: 
 		coordNext := tile_i right @ 0.
 		].
 	
-	" 3. display points "
+	" 3. display features "
 	aFeaturesCollection features do: [ :each |
-		| repere repereX repereY point_i delayX delayY |
+		| repere_i repereX repereY point_i delayX delayY |
 		point_i := each geometry.
 		delayX := ((point_i xTileWithZoom: zoom) - minX ) * self tileSize.
 		delayY := ((point_i yTileWithZoom: zoom) - minY ) * self tileSize.
-		repere := self repere.
+		repere_i := self repere.
 		repereX := ((self repere position) x) + (point_i xPixelInTileWithZoom: zoom) + delayX.
 		repereY := ((self repere position) y) + (point_i yPixelInTileWithZoom: zoom) + delayY.
-		repere position: repereX @ repereY.
-		map addMorph: repere.
+		repere_i position: repereX @ repereY.
+		map addMorph: repere_i.
 		
 		 ].
 	 ^ map
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #operations }
 OGCViewerMorph >> displayPoint: aOGCPoint withZoomLevel: aZoomLevel [
-	| repere repereX repereY |
+	| repere_i repereX repereY |
 	map := self getTilePng: aOGCPoint withZoomLevel: aZoomLevel.
-	repere := self repere.
+	repere_i := self repere.
 	repereX := ((self repere position) x) +(aOGCPoint xPixelInTileWithZoom: aZoomLevel).
 	repereY := ((self repere position) y) + (aOGCPoint yPixelInTileWithZoom: aZoomLevel).
-	repere position: repereX @ repereY.
-	map addMorph: repere.
+	repere_i position: repereX @ repereY.
+	map addMorph: repere_i.
 	^ map
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #operations }
 OGCViewerMorph >> getTilePng: aOGCPoint withZoomLevel: aZoomLevel [
 	| zoom |
 	zoom := aZoomLevel min: self zoomLimit.
 	^ self getTilePngWithZoom: aZoomLevel x: (aOGCPoint xTileWithZoom: zoom) y: (aOGCPoint yTileWithZoom: zoom)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #operations }
 OGCViewerMorph >> getTilePngWithZoom: aZoomLevel x: aXvalue y: aYvalue [
 	| url |
 	url := 
@@ -125,7 +125,7 @@ OGCViewerMorph >> repere [
 		copy
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 OGCViewerMorph >> repereContents [
 	^ 'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABHNCSVQICAgIfAhkiAAAAAlw
 SFlzAAAOkwAADpMBcVr9xwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoA
@@ -345,7 +345,7 @@ kGYADArjVxEA48Mg/0YgAIB0I2DLMO81ATAvbOnfBgQAkH4E7BvaYvi77evfBAQAUJwIGBXj
 P8q/BRTT/we2xT+S89eg4AAAAABJRU5ErkJggg=='
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 OGCViewerMorph >> repereSize [
 	^ 20
 ]
@@ -357,12 +357,12 @@ OGCViewerMorph >> run [
 	self extent: self defaultExtent.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 OGCViewerMorph >> tileSize [
 	^ 256
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 OGCViewerMorph >> zoomLimit [
 	^ 19
 ]

@@ -198,6 +198,11 @@ This returns FALSE if all the tested intersections are empty except exterior (th
 	self subclassResponsibility 
 ]
 
+{ #category : #accessing }
+OGCGeometry >> spatialReferenceSystem [
+	^ spatialReferenceSystem 
+]
+
 { #category : #'methods analysis' }
 OGCGeometry >> symDifference: anotherGeometry [
 	"Returns a geometric object that represents the
