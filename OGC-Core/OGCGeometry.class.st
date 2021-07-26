@@ -183,6 +183,12 @@ OGCGeometry >> overlaps: anotherGeometry [
 	self subclassResponsibility 
 ]
 
+{ #category : #'as yet unclassified' }
+OGCGeometry >> rectangularEnvelope [
+	"Returns [ minX, maxX, minY, maxY ] to define the minimal rectangle which contains the geometry"
+	self subclassResponsibility 
+]
+
 { #category : #testing }
 OGCGeometry >> relate: anotherGeometry [
 	"Returns 1 (TRUE) if this

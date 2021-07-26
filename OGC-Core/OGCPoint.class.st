@@ -137,6 +137,11 @@ OGCPoint >> printOn: aStream [
 		aStream << ',' << z asString ]
 ]
 
+{ #category : #'as yet unclassified' }
+OGCPoint >> rectangularEnvelope [
+	^ Dictionary newFromPairs: {'minX' . x . 'maxX' . x . 'minY' . y . 'maxY' . y }
+]
+
 { #category : #'truncation and round off' }
 OGCPoint >> roundTo: grid [
 	
