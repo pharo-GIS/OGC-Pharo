@@ -15,7 +15,8 @@ Class {
 		'x',
 		'y',
 		'z',
-		'm'
+		'm',
+		'icon'
 	],
 	#category : #'OGC-Core'
 }

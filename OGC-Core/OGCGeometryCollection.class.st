@@ -50,3 +50,15 @@ OGCGeometryCollection >> numGeometries [
 	"cReturns the number of geometries in this GeometryCollection"
 	^ geometries size
 ]
+
+{ #category : #basic }
+OGCGeometryCollection >> rectangularEnvelope [
+	" Returns [ minX, maxX, minY, maxY ] to define minimal rectangle which contains all features "
+	| allRectangularEnvelopes minX maxX minY maxY |
+	allRectangularEnvelopes := geometries collect: [ :aGeometry | aGeometry rectangularEnvelope  ].
+	minX := (allRectangularEnvelopes collect: [ :each | each at: 'minX' ]) min.
+	maxX := (allRectangularEnvelopes collect: [ :each | each at: 'maxX' ]) max.
+	minY := (allRectangularEnvelopes collect: [ :each | each at: 'minY' ]) min.
+	maxY := (allRectangularEnvelopes collect: [ :each | each at: 'maxY' ]) max.
+	^ Dictionary newFromPairs: {'minX' . minX . 'maxX' . maxX . 'minY' . minY . 'maxY' . maxY }
+]
