@@ -39,11 +39,6 @@ OGCCurve >> boundary [
 ]
 
 { #category : #accessing }
-OGCCurve >> color [
-	^ Color red
-]
-
-{ #category : #accessing }
 OGCCurve >> dimension [ 
 	"The inherent dimension of this geometric object, which must be less than or equal to the coordinate dimension."
 	^ 1
@@ -108,9 +103,4 @@ OGCCurve >> rectangularEnvelope [
 { #category : #accessing }
 OGCCurve >> startPoint [
 	^ points first
-]
-
-{ #category : #accessing }
-OGCCurve >> width [
-	^ 1
 ]

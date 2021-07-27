@@ -1,6 +1,11 @@
 Extension { #name : #OGCCurve }
 
 { #category : #'*OGC-Viewer' }
+OGCCurve >> color [
+	^ Color red
+]
+
+{ #category : #'*OGC-Viewer' }
 OGCCurve >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	| allXPixel allYPixel surface amplitudeX amplitudeY initialOffsetX initialOffsetY coordInit coordNext pointInit morph |
 	" 1. define working surface "
@@ -10,8 +15,8 @@ OGCCurve >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	amplitudeY := allYPixel max - allYPixel min.
 	surface := AthensCairoSurface extent: amplitudeX@amplitudeY.
 	" 2. define first point coordinates: reference "
-	initialOffsetX := (self points first xPixelWithZoom: zoom) - allXPixel min.
-	initialOffsetY := (self points first yPixelWithZoom: zoom) - allYPixel min.
+	initialOffsetX := (self startPoint xPixelWithZoom: zoom) - allXPixel min.
+	initialOffsetY := (self startPoint yPixelWithZoom: zoom) - allYPixel min.
 	coordInit := initialOffsetX @ initialOffsetY .
 	
 	surface drawDuring: [ :can | 
@@ -37,7 +42,12 @@ OGCCurve >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	" 5. change result position "
 	morph := surface asMorph.
 	morph position: 
-		((initialOffsetX sign: (-1) ) + (points first xPixelWithOffset: offsetX withZoom: zoom))
-		@ ((initialOffsetY sign: (-1) ) + (points first yPixelWithOffset: offsetY withZoom: zoom)).
+		((initialOffsetX sign: (-1) ) + (self startPoint xPixelWithOffset: offsetX withZoom: zoom))
+		@ ((initialOffsetY sign: (-1) ) + (self startPoint yPixelWithOffset: offsetY withZoom: zoom)).
 	^ morph
+]
+
+{ #category : #'*OGC-Viewer' }
+OGCCurve >> width [
+	^ 2
 ]

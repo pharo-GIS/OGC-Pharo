@@ -55,7 +55,9 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: 
 		offsetX := rectangularTileEnvelope at: 'minX'.
 		offsetY := rectangularTileEnvelope at: 'minY'.
 		morph := each geometry displayWithZoom: zoom offsetX: offsetX offsetY: offsetY.
-		map addMorph: morph.
+		(morph isArray ) 
+			ifTrue: [ morph do: [ :eachMorph | map addMorph: eachMorph ] ]
+			ifFalse: [ map addMorph: morph ].
 	].
 	 ^ map
 ]
