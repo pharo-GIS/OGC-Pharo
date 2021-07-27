@@ -21,7 +21,8 @@ Class {
 	#superclass : #OGCObject,
 	#instVars : [
 		'spatialReferenceSystem',
-		'measureReferenceSystems'
+		'measureReferenceSystems',
+		'style'
 	],
 	#category : #'OGC-Core'
 }
@@ -201,6 +202,17 @@ This returns FALSE if all the tested intersections are empty except exterior (th
 { #category : #accessing }
 OGCGeometry >> spatialReferenceSystem [
 	^ spatialReferenceSystem 
+]
+
+{ #category : #accessing }
+OGCGeometry >> style [
+	^ style
+]
+
+{ #category : #accessing }
+OGCGeometry >> style: aDictionaryWithStyleSpecs [
+	style := aDictionaryWithStyleSpecs 
+	
 ]
 
 { #category : #'methods analysis' }
