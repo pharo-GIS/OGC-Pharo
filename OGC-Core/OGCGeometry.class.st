@@ -206,7 +206,7 @@ OGCGeometry >> spatialReferenceSystem [
 
 { #category : #accessing }
 OGCGeometry >> style [
-	^ style
+	^ style ifNil: [ ^ style := Dictionary new ]
 ]
 
 { #category : #accessing }
