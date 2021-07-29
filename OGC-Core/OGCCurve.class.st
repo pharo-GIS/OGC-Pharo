@@ -89,6 +89,17 @@ OGCCurve >> points: anObject [
 	points := anObject
 ]
 
+{ #category : #basic }
+OGCCurve >> rectangularEnvelope [
+	" Returns [ minX, maxX, minY, maxY ] to define minimal rectangle which contains all features "
+	| minX maxX minY maxY |
+	minX := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'minX' ]) min.
+	maxX := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'maxX' ]) max.
+	minY := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'minY' ]) min.
+	maxY := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'maxY' ]) max.
+	^ Dictionary newFromPairs: {'minX' . minX . 'maxX' . maxX . 'minY' . minY . 'maxY' . maxY }
+]
+
 { #category : #accessing }
 OGCCurve >> startPoint [
 	^ points first

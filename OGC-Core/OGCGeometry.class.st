@@ -21,7 +21,8 @@ Class {
 	#superclass : #OGCObject,
 	#instVars : [
 		'spatialReferenceSystem',
-		'measureReferenceSystems'
+		'measureReferenceSystems',
+		'style'
 	],
 	#category : #'OGC-Core'
 }
@@ -183,7 +184,7 @@ OGCGeometry >> overlaps: anotherGeometry [
 	self subclassResponsibility 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #basic }
 OGCGeometry >> rectangularEnvelope [
 	"Returns [ minX, maxX, minY, maxY ] to define the minimal rectangle which contains the geometry"
 	self subclassResponsibility 
@@ -201,6 +202,17 @@ This returns FALSE if all the tested intersections are empty except exterior (th
 { #category : #accessing }
 OGCGeometry >> spatialReferenceSystem [
 	^ spatialReferenceSystem 
+]
+
+{ #category : #accessing }
+OGCGeometry >> style [
+	^ style ifNil: [ ^ style := Dictionary new ]
+]
+
+{ #category : #accessing }
+OGCGeometry >> style: aDictionaryWithStyleSpecs [
+	style := aDictionaryWithStyleSpecs 
+	
 ]
 
 { #category : #'methods analysis' }

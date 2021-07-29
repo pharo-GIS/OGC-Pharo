@@ -52,3 +52,9 @@ OGCSurface >> pointOnSurface [
 	"A Point guaranteed to be on this Surface"
 	self subclassResponsibility 
 ]
+
+{ #category : #basic }
+OGCSurface >> rectangularEnvelope [
+	" Returns [ minX, maxX, minY, maxY ] to define minimal rectangle which contains all features "
+	^ exteriorRing rectangularEnvelope
+]
