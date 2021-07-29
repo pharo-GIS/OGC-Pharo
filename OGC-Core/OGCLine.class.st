@@ -28,11 +28,6 @@ OGCLine class >> withPoints: aCollectionOfPoints [
 		ifFalse: [ self errorIncorrectNumberOfPoints: aCollectionOfPoints size]
 ]
 
-{ #category : #converting }
-OGCLine >> asGElement [
-	^ GSegment with: points first asGElement with: points second asGElement 
-]
-
 { #category : #'methods analysis' }
 OGCLine >> intersection: anotherGeometry [
 	"Returns a geometric object that represents the

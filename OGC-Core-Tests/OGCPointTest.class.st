@@ -70,12 +70,3 @@ OGCPointTest >> testPointMin [
 	p2 := OGCPoint x: 2 y: 2.
 	self assert: (p2 min: p1) equals: p1.
 ]
-
-{ #category : #tests }
-OGCPointTest >> testPointRoundTo [
-	| p1 p2 |
-	p1 := OGCPoint x: 1.23456789 y: 9.87654321.
-	p2 := p1 roundTo: 10 ** -5.
-	self assert: p2 x asFloat equals: 1.23457.
-	self assert: p2 y asFloat equals: 9.87654
-]

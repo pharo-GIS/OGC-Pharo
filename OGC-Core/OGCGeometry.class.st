@@ -48,11 +48,6 @@ foreign key to an index of reference systems stored in either the same or some o
 	self subclassResponsibility 
 ]
 
-{ #category : #converting }
-OGCGeometry >> asGElement [
-	self subclassResponsibility 
-]
-
 { #category : #basic }
 OGCGeometry >> boundary [
 	"Geometry — Returns the closure of the combinatorial boundary of this geometric object
@@ -188,6 +183,12 @@ OGCGeometry >> overlaps: anotherGeometry [
 	self subclassResponsibility 
 ]
 
+{ #category : #'as yet unclassified' }
+OGCGeometry >> rectangularEnvelope [
+	"Returns [ minX, maxX, minY, maxY ] to define the minimal rectangle which contains the geometry"
+	self subclassResponsibility 
+]
+
 { #category : #testing }
 OGCGeometry >> relate: anotherGeometry [
 	"Returns 1 (TRUE) if this
@@ -195,6 +196,11 @@ geometric object is spatially related to anotherGeometry by testing for intersec
 boundary and exterior of the two geometric objects as specified by the values in the intersectionPatternMatrix.
 This returns FALSE if all the tested intersections are empty except exterior (this) intersect exterior (another)."
 	self subclassResponsibility 
+]
+
+{ #category : #accessing }
+OGCGeometry >> spatialReferenceSystem [
+	^ spatialReferenceSystem 
 ]
 
 { #category : #'methods analysis' }

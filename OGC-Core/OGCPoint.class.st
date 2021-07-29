@@ -55,11 +55,6 @@ OGCPoint >> = anOGCPoint [
 	^ (x = anOGCPoint x) & (y = anOGCPoint y) & (z = anOGCPoint z)
 ]
 
-{ #category : #converting }
-OGCPoint >> asGElement [
-	^ GPoint x: x y: y
-]
-
 { #category : #conversion }
 OGCPoint >> asPoint [
 	^ x @ y
@@ -140,6 +135,11 @@ OGCPoint >> printOn: aStream [
 	aStream << x asString << ',' << y asString.
 	z ifNotNil: [ 
 		aStream << ',' << z asString ]
+]
+
+{ #category : #geometry }
+OGCPoint >> rectangularEnvelope [
+	^ Dictionary newFromPairs: {'minX' . x . 'maxX' . x . 'minY' . y . 'maxY' . y }
 ]
 
 { #category : #'truncation and round off' }

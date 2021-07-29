@@ -16,22 +16,22 @@ BaselineOfOGC >> baseline: spec [
 			package: #'OGC-Geometry' with: [ 
 				spec requires: #('OGC-Core' 'Geometry') ];
 			package: #'OGC-Geometry-Tests' with: [ 
-				spec requires: #('OGC-Core-Tests' 'OGC-Geometry') ].
+				spec requires: #('OGC-Core-Tests' 'OGC-Geometry') ];
+			package: #'OGC-Spheric' with: [ 
+				spec requires: #('OGC-Core' ) ];
+			package: #'OGC-Spheric-Tests' with: [ 
+				spec requires: #('OGC-Core-Tests' 'OGC-Spheric') ].
 		spec 
 			group: 'Core' with: #('OGC-Core' );
 			group: 'Tests' with: #('OGC-Core-Tests');
-			group: 'OGC-Geometry' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
-			group: 'default' with: #('Core' 'Tests' 'OGC-Geometry'). 
+			group: 'Geometric' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
+			group: 'Spheric' with: #('OGC-Spheric' 'OGC-Spheric-Tests');
+			group: 'default' with: #('Core' 'Tests' 'Spheric'). 
 			
 		"For Geometric projection computation"
 		spec
     	baseline: 'Geometry'
     	with: [ spec repository: 'github://pharo-contributions/Geometry:master/src' ].	
-		
-		"For GeoJSON Parser"
-		spec
-    	baseline: 'GeoJSON'
-    	with: [ spec repository: 'github://zweidenker/geojson:master/src' ]
 	
 		].
 
