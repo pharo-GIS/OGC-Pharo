@@ -54,6 +54,11 @@ OGCPolygon >> exteriorRing: anObject [
 	exteriorRing := anObject
 ]
 
+{ #category : #comparing }
+OGCPolygon >> hash [ 
+	^ self interiorRings hash bitXor: self exteriorRing hash
+]
+
 { #category : #accessing }
 OGCPolygon >> interiorRingN: anInteger [
 	"Returns the Nth interior ring for this Polygon as a LineString."
