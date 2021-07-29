@@ -4,8 +4,3 @@ Extension { #name : #OGCGeometry }
 OGCGeometry >> asGElement [
 	self subclassResponsibility 
 ]
-
-{ #category : #'*OGC-Geometry' }
-OGCGeometry >> initialize [
-	spatialReferenceSystem := OGCGeometricProjection
-]
