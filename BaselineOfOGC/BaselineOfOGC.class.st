@@ -9,6 +9,7 @@ BaselineOfOGC >> baseline: spec [
 	<baseline>
 
 	spec for: #'common' do: [
+		self geometry: spec.
 		spec 
 			package: #'OGC-Core';
 			package: #'OGC-Core-Tests' with: [
@@ -26,13 +27,16 @@ BaselineOfOGC >> baseline: spec [
 			group: 'Tests' with: #('OGC-Core-Tests');
 			group: 'Geometric' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
 			group: 'Spheric' with: #('OGC-Spheric' 'OGC-Spheric-Tests');
-			group: 'default' with: #('Core' 'Tests' 'Spheric'). 
-			
-		"For Geometric projection computation"
-		spec
-    	baseline: 'Geometry'
-    	with: [ spec repository: 'github://pharo-contributions/Geometry:master/src' ].	
-	
-		].
+			group: 'default' with: #('Core' 'Tests' 'Geometric' 'Spheric'). 
+		]
 
+]
+
+{ #category : #accessing }
+BaselineOfOGC >> geometry: spec [ 
+	"For Geometric projection computation"
+	spec
+    	baseline: 'Geometry'
+ 		with: [ 
+			spec repository: 'github://pharo-contributions/Geometry:master/src' ]
 ]
