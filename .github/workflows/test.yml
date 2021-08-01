@@ -8,11 +8,11 @@ env:
 on:
   pull_request:
     types: [assigned, opened, synchronize, reopened]
-
-on:
+    
   push:
     branches:
       - master
+  
 
 jobs:
   build:
