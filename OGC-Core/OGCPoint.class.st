@@ -140,7 +140,7 @@ OGCPoint >> printOn: aStream [
 
 { #category : #geometry }
 OGCPoint >> rectangularEnvelope [
-	^ Dictionary newFromPairs: {'minX' . x . 'maxX' . x . 'minY' . y . 'maxY' . y }
+	^ x@y corner: x@y
 ]
 
 { #category : #'truncation and round off' }

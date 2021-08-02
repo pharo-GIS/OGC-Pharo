@@ -191,7 +191,7 @@ OGCGeometry >> overlaps: anotherGeometry [
 
 { #category : #basic }
 OGCGeometry >> rectangularEnvelope [
-	"Returns [ minX, maxX, minY, maxY ] to define the minimal rectangle which contains the geometry"
+	"Returns the minimal rectangle which contains the geometry"
 	self subclassResponsibility 
 ]
 
