@@ -93,7 +93,6 @@ OGCCurve >> points: anObject [
 OGCCurve >> rectangularEnvelope [
 	" Returns the minimal rectangle which contains all features "
 	| allRectangularEnvelopes |
-	self halt.
 	allRectangularEnvelopes := points collect: [ :aPoint | aPoint rectangularEnvelope  ].
 	^ allRectangularEnvelopes reduce: [ :rect1 :rect2 | rect1 merge: rect2 ]
 ]

@@ -38,9 +38,9 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: 
 	" 2. load all map tiles and display complete map background "
 	map := ImageMorph new.
 	coordNext := 0@0.
-	(rectangularTileEnvelope at: 'minX') to: (rectangularTileEnvelope at: 'maxX') do: [ :x_i |
+	(rectangularTileEnvelope origin x) to: (rectangularTileEnvelope corner x) do: [ :x_i |
 		| tile_i |
-		(rectangularTileEnvelope at: 'minY') to: (rectangularTileEnvelope at: 'maxY') do: [ :y_i |
+		(rectangularTileEnvelope origin y) to: (rectangularTileEnvelope corner y) do: [ :y_i |
 			tile_i := self getTilePngWithZoom: zoom x: x_i y: y_i.
 			tile_i position: coordNext.
 			coordNext := coordNext x @ tile_i bottom.
@@ -52,8 +52,8 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: 
 	" 3. display features "
 	aFeaturesCollection features do: [ :each |
 		| morph offsetX offsetY |
-		offsetX := rectangularTileEnvelope at: 'minX'.
-		offsetY := rectangularTileEnvelope at: 'minY'.
+		offsetX := rectangularTileEnvelope origin x.
+		offsetY := rectangularTileEnvelope origin y.
 		morph := each geometry displayWithZoom: zoom offsetX: offsetX offsetY: offsetY.
 		(morph isArray ) 
 			ifTrue: [ 
@@ -114,13 +114,13 @@ OGCViewerMorph >> rectangularTileEnvelope: aFeaturesCollection withZoom: zoom [
 	| rectangularEnvelope corner00 corner11 minX maxX minY maxY |
 	" 1. define four map tils to define corners "
 	rectangularEnvelope := aFeaturesCollection rectangularEnvelope.
-	corner00 := (OGCPoint x: (rectangularEnvelope at: 'minX') y: (rectangularEnvelope at: 'maxY')).
-	corner11 := (OGCPoint x: (rectangularEnvelope at: 'maxX') y: (rectangularEnvelope at: 'minY')).
+	corner00 := (OGCPoint x: (rectangularEnvelope origin x) y: (rectangularEnvelope origin y)).
+	corner11 := (OGCPoint x: (rectangularEnvelope corner x) y: (rectangularEnvelope corner y)).
 	minX := (corner00 xTileWithZoom: zoom) - self padding.
 	maxX := (corner11 xTileWithZoom: zoom) + self padding.
 	minY := (corner00 yTileWithZoom: zoom) - self padding.
 	maxY := (corner11 yTileWithZoom: zoom) + self padding.
-	^ Dictionary newFromPairs: {'minX' . minX . 'maxX' . maxX . 'minY' . minY . 'maxY' . maxY }
+	^ minX@minY corner: maxX@maxY
 ]
 
 { #category : #running }
