@@ -8,3 +8,8 @@ Class {
 OGCObject class >> isAbstract [
 	^ self = OGCObject
 ]
+
+{ #category : #basic }
+OGCObject >> rectangularEnvelope [
+	self subclassResponsibility 
+]

@@ -132,6 +132,15 @@ OGCGeometry >> initialize [
 	spatialReferenceSystem := OGCGeometricProjection
 ]
 
+{ #category : #'as yet unclassified' }
+OGCGeometry >> inspectionMorph [
+    <inspectorPresentationOrder: 90 title: 'Map'>
+
+    ^ SpMorphPresenter new
+        morph: (self displayWithZoom: 5 offsetX: 0 offsetY: 0 );
+        yourself 
+]
+
 { #category : #'methods analysis' }
 OGCGeometry >> intersection: anotherGeometry [
 	"Returns a geometric object that represents the

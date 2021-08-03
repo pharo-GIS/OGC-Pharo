@@ -43,3 +43,9 @@ OGCFeature >> properties [
 OGCFeature >> properties: aDictionary [
 	properties := aDictionary
 ]
+
+{ #category : #basic }
+OGCFeature >> rectangularEnvelope [
+	" Returns the minimal rectangle which contains all features "
+	^ self geometry rectangularEnvelope 
+]
