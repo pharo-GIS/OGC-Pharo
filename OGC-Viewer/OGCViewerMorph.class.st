@@ -23,7 +23,7 @@ OGCViewerMorph class >> displayFeaturesCollection: aFeaturesCollection withZoomL
 
 { #category : #'as yet unclassified' }
 OGCViewerMorph class >> withMapTiles [
-	^ self new activateMapTiles
+	^ self withMapTiles: 3@2
 ]
 
 { #category : #'as yet unclassified' }

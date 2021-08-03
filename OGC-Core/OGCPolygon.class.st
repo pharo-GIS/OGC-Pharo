@@ -40,6 +40,8 @@ OGCPolygon >> = anotherPolygon [
 
 { #category : #accessing }
 OGCPolygon >> addInteriorRing: anOGCLinearRing [
+	anOGCLinearRing isClosed ifFalse: [ 
+		Error signal: 'linear ring is not closed' ].
 	interiorRings add: anOGCLinearRing 
 ]
 

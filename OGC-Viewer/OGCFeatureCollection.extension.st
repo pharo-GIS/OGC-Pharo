@@ -8,7 +8,7 @@ OGCFeatureCollection >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue
 	morph := ImageMorph new.
 	self features do: [ :each |
 		| morphFeature |
-		morphFeature := each simpleDisplayWithZoom: aZoom offsetX: (aXValue + initialOffsetX) offsetY: (aYValue + initialOffsetY).
+		morphFeature := each displayWithZoom: aZoom offsetX: (aXValue + initialOffsetX) offsetY: (aYValue + initialOffsetY).
 		morph addMorph: morphFeature.
 	].
 	^ morph
