@@ -63,7 +63,7 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection [
 
 { #category : #operations }
 OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel [
-	| zoom rectangularTileEnvelope coordNext |
+	| zoom rectangularTileEnvelope |
 	zoom := aZoomLevel min: 19.
 	" 1. define four map tiles to define corners "
 	rectangularTileEnvelope := aFeaturesCollection rectangularTileEnvelopeWithZoom: zoom.
@@ -72,20 +72,10 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: 
 	
 	(displayParameters at: 'displayMapTiles') ifTrue: [ 
 		" 2. if true: load all map tiles and display complete map background "
-		| mapTiles |
-		mapTiles := ImageMorph new.
-		coordNext := 0@0.
-	(rectangularTileEnvelope origin x) to: ((rectangularTileEnvelope origin x) + self widthTileLimit) do: [ :x_i |
-		| tile_i |
-		(rectangularTileEnvelope origin y) to: ((rectangularTileEnvelope origin y) + self heightTileLimit) do: [ :y_i |
-			tile_i := self getTilePngWithZoom: zoom x: x_i y: y_i.
-			tile_i position: coordNext.
-			coordNext := coordNext x @ tile_i bottom.
-			mapTiles addMorph: tile_i.
-			] .
-		coordNext := tile_i right @ 0.
-		].
-		map addMorph: mapTiles.
+		| xInterval yInterval |
+		xInterval := (rectangularTileEnvelope origin x) to: ((rectangularTileEnvelope origin x) + self widthTileLimit).
+		yInterval := (rectangularTileEnvelope origin y) to: ((rectangularTileEnvelope origin y) + self heightTileLimit).
+		map addMorph: (self getMapTilesWithZoom: zoom xInterval: xInterval yInterval: yInterval).
 	].
 	
 	" 3. display features "
@@ -102,6 +92,24 @@ OGCViewerMorph >> displayParameters [
 { #category : #initialization }
 OGCViewerMorph >> displayParameters: aDictionary [
 	displayParameters  := aDictionary 
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph >> getMapTilesWithZoom: zoom xInterval: aXInterval yInterval: aYInterval [
+	| mapTiles coordNext|
+	mapTiles := ImageMorph new.
+	coordNext := 0@0.
+	aXInterval do: [ :x_i |
+		| tile_i |
+		aYInterval do: [ :y_i |
+			tile_i := self getTilePngWithZoom: zoom x: x_i y: y_i.
+			tile_i position: coordNext.
+			coordNext := coordNext x @ tile_i bottom.
+			mapTiles addMorph: tile_i.
+			] .
+		coordNext := tile_i right @ 0.
+		].
+	^ mapTiles
 ]
 
 { #category : #operations }

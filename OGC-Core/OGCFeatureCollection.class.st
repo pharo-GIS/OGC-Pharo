@@ -8,6 +8,11 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #converting }
+OGCFeatureCollection >> asFeaturesCollection [ 
+	^ self
+]
+
 { #category : #accessing }
 OGCFeatureCollection >> features [
 	^ features

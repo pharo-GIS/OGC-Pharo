@@ -9,6 +9,11 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #converting }
+OGCFeature >> asFeaturesCollection [ 
+	^ OGCFeatureCollection new features: (Array with: self)
+]
+
 { #category : #'methods analysis' }
 OGCFeature >> distance: anotherFeature [
 	^ self geometry distance: anotherFeature geometry

@@ -9,6 +9,11 @@ OGCObject class >> isAbstract [
 	^ self = OGCObject
 ]
 
+{ #category : #converting }
+OGCObject >> asFeaturesCollection [ 
+	self subclassResponsibility 
+]
+
 { #category : #basic }
 OGCObject >> rectangularEnvelope [
 	self subclassResponsibility 
