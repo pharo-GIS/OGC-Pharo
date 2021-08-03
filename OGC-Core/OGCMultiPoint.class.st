@@ -24,11 +24,6 @@ OGCMultiPoint class >> withPoints: aBagOfPoints [
 	^ self new geometries: aBagOfPoints 
 ]
 
-{ #category : #testing }
-OGCMultiPoint >> = anotherMultiPoint [
-	^ self geometries asSet = anotherMultiPoint geometries asSet
-]
-
 { #category : #basic }
 OGCMultiPoint >> boundary [
 	^ OGCEmptySet new

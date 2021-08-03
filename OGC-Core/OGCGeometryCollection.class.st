@@ -24,14 +24,14 @@ OGCGeometryCollection class >> isAbstract [
 	^ self = OGCGeometryCollection 
 ]
 
+{ #category : #testing }
+OGCGeometryCollection >> = anotherMultiPoint [
+	^ self geometries asSet = anotherMultiPoint geometries asSet
+]
+
 { #category : #basic }
 OGCGeometryCollection >> dimension [
 	^ geometries sorted: [ :e1 :e2 | e1 dimension > e2 dimension ] first
-]
-
-{ #category : #'as yet unclassified' }
-OGCGeometryCollection >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
-	^ geometries collect: [ :each | each displayWithZoom: zoom offsetX: offsetX offsetY: offsetY ]
 ]
 
 { #category : #accessing }

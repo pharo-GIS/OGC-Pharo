@@ -27,11 +27,20 @@ OGCObject >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue [
 ]
 
 { #category : #'*OGC-Viewer' }
-OGCObject >> inspectionMorph [
+OGCObject >> inspectionMap [
 	<inspectorPresentationOrder: 90 title: 'Map'>
 
     ^ SpMorphPresenter new
         morph: (self displayWithZoom: self bestZoom);
+        yourself 
+]
+
+{ #category : #'*OGC-Viewer' }
+OGCObject >> inspectionMapWithTiles [
+	<inspectorPresentationOrder: 91 title: 'Map with Tiles'>
+
+    ^ SpMorphPresenter new
+        morph: ((OGCViewerMorph withMapTiles: 1@1) displayFeaturesCollection: self);
         yourself 
 ]
 
