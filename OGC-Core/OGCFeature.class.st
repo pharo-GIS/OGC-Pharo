@@ -15,6 +15,12 @@ OGCFeature >> applyStyle: aStyleDictionary [
 	self geometry applyStyle: aStyleDictionary 
 ]
 
+{ #category : #styling }
+OGCFeature >> applyStyle: aStyleDictionary ifFeature: aBlock [
+	" apply the given style to features which respect given block closure"
+	(aBlock value: self) ifTrue: [ self applyStyle: aStyleDictionary  ]
+]
+
 { #category : #converting }
 OGCFeature >> asFeaturesCollection [ 
 	^ OGCFeatureCollection new features: (Array with: self)

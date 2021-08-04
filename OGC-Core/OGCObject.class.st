@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 OGCObject class >> createStyleDictionary: anArray [
-	" array = [ <fillColor> <fillOpacity> <strokeColor> <strokeWidth> ]"
+	" return a dictionary which can be used as a style dictionary for a OGCGeometry, based on data given as the following array of strings : [ <fillColor> <fillOpacity> <strokeColor> <strokeWidth> ] "
 	| styleDictionary keys |
 	styleDictionary := Dictionary new.
 	keys := { 'fill' . 'fill-opacity' . 'stroke' . 'stroke-width'}.
@@ -21,11 +21,13 @@ OGCObject class >> isAbstract [
 
 { #category : #styling }
 OGCObject >> applyStyle: aStyleDictionary [
+	" apply the given style (as a dictionary) to every elements"
 	self subclassResponsibility 
 ]
 
 { #category : #styling }
 OGCObject >> applyStyle: aStyleDictionary ifFeature: aBlock [
+	" apply the given style to features which respect given block closure"
 	self subclassResponsibility 
 ]
 
@@ -36,5 +38,6 @@ OGCObject >> asFeaturesCollection [
 
 { #category : #basic }
 OGCObject >> rectangularEnvelope [
+	" return a rectangle which can contain all geometries"
 	self subclassResponsibility 
 ]

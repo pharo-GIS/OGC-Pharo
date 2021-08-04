@@ -49,7 +49,7 @@ foreign key to an index of reference systems stored in either the same or some o
 	self subclassResponsibility 
 ]
 
-{ #category : #styling }
+{ #category : #style }
 OGCGeometry >> applyStyle: aStyleDictionary [
 	aStyleDictionary keysDo: [ :aKey | self style at: aKey put: (aStyleDictionary at: aKey) ]
 ]

@@ -15,7 +15,7 @@ OGCFeatureCollection >> applyStyle: aStyleDictionary [
 
 { #category : #styling }
 OGCFeatureCollection >> applyStyle: aStyleDictionary ifFeature: aBlock [
-	self features do: [ :eachFeature | (aBlock value: eachFeature) ifTrue: [ eachFeature applyStyle: aStyleDictionary ] ]
+	self features do: [ :eachFeature | eachFeature applyStyle: aStyleDictionary ifFeature: aBlock ]
 ]
 
 { #category : #styling }

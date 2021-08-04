@@ -5,6 +5,41 @@ Class {
 }
 
 { #category : #tests }
+OGCViewerTest >> testApplyStyle [
+	| model |
+	model := GeoJSONExamples regionsFranceMetropole .
+	model applyStyle: (OGCGeometry createStyleDictionary: #(blue 0.3 green 4)).
+	self assert: (model features first geometry style at: 'fill') equals: 'blue'.
+	self assert: (model features second geometry style at: 'fill-opacity') equals: '0.3'.
+	self assert: (model features third geometry style at: 'stroke') equals: 'green'.
+	self assert: (model features fourth geometry style at: 'stroke-width') equals: '4'.
+]
+
+{ #category : #tests }
+OGCViewerTest >> testApplyStyleifFeature [
+	| model blockCondition styleDictionary |
+	model := GeoJSONExamples regionsFranceMetropole .
+	blockCondition := [ :aFeature | (aFeature properties at: 'code') asNumber even ].
+	styleDictionary := OGCGeometry createStyleDictionary: #(purple 0.8 orange 3).
+	model 
+		applyStyle: styleDictionary
+		ifFeature: blockCondition .
+	self assert: ( (model features select: blockCondition) first geometry style ) equals: styleDictionary .
+]
+
+{ #category : #tests }
+OGCViewerTest >> testBestZoom [
+	| model bestZoom rectangleEnvelopeAtBestZoom rectangleEnvelopeBigger |
+	model := GeoJSONExamples pointLineAndPolygon2 .
+	bestZoom := model bestZoomWithZoomLimit: 19 widthTileLimit: 3 heightTileLimit: 2.
+	rectangleEnvelopeAtBestZoom := model rectangularTileEnvelopeWithZoom: bestZoom.
+	rectangleEnvelopeBigger := model rectangularTileEnvelopeWithZoom: (bestZoom + 1).
+	self assert: rectangleEnvelopeAtBestZoom width <= 3.
+	self assert: rectangleEnvelopeAtBestZoom height <= 2.
+	self assert: ((rectangleEnvelopeBigger width>3) or: (rectangleEnvelopeBigger height>2))
+]
+
+{ #category : #tests }
 OGCViewerTest >> testCoordinatesPoint [
 	| point zoomLevel |
 	"Based on example from https://developers.google.com/maps/documentation/javascript/coordinates"

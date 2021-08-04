@@ -10,6 +10,6 @@ OGCFeature >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue [
 
 { #category : #'*OGC-Viewer' }
 OGCFeature >> handleClick [
-	" display informationWindow with properties"
+	" at click on my morph: inspect my properties "
 	(self properties ) inspect.
 ]
