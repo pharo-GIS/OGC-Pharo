@@ -2,13 +2,11 @@ Extension { #name : #OGCGeometryCollection }
 
 { #category : #'*OGC-Viewer' }
 OGCGeometryCollection >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
-	| morph initialOffsetX initialOffsetY |
-	initialOffsetX := (self rectangularTileEnvelopeWithZoom: zoom) origin x.
-	initialOffsetY := (self rectangularTileEnvelopeWithZoom: zoom) origin y.
+	| morph |
 	morph := ImageMorph new.
 	geometries do: [ :each |
 		| morphGeometry |
-		morphGeometry := each displayWithZoom: zoom offsetX: (offsetX "+ initialOffsetX") offsetY: (offsetY "+ initialOffsetY").
+		morphGeometry := each displayWithZoom: zoom offsetX: (offsetX) offsetY: (offsetY).
 		morph addMorph: morphGeometry.
 	].
 	^ morph

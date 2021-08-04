@@ -31,7 +31,7 @@ OGCObject >> inspectionMap [
 	<inspectorPresentationOrder: 90 title: 'Map'>
 
     ^ SpMorphPresenter new
-        morph: (self displayWithZoom: self bestZoom);
+        morph: ((self asFeaturesCollection) displayWithZoom: self bestZoom);
         yourself 
 ]
 
