@@ -136,7 +136,7 @@ OGCGeometry >> geometryType [
 
 { #category : #initialization }
 OGCGeometry >> initialize [
-	spatialReferenceSystem := OGCGeometricProjection
+	spatialReferenceSystem := OGCSphericSystem 
 ]
 
 { #category : #'methods analysis' }
