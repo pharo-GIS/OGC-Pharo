@@ -91,6 +91,26 @@ OGCGeometry >> crosses: anotherGeometry [
 	self subclassResponsibility 
 ]
 
+{ #category : #style }
+OGCGeometry >> defaultFillColor [
+	^ 'red'
+]
+
+{ #category : #style }
+OGCGeometry >> defaultFillOpacity [
+	^ '0'
+]
+
+{ #category : #style }
+OGCGeometry >> defaultStrokeColor [
+	^ 'red'
+]
+
+{ #category : #style }
+OGCGeometry >> defaultStrokeWidth [
+	^ '2'
+]
+
 { #category : #'methods analysis' }
 OGCGeometry >> difference: anotherGeometry [
 	"Returns a geometric object that represents the Point
@@ -225,6 +245,35 @@ OGCGeometry >> style [
 OGCGeometry >> style: aDictionaryWithStyleSpecs [
 	style := aDictionaryWithStyleSpecs 
 	
+]
+
+{ #category : #style }
+OGCGeometry >> styleFillColor [
+	| color colorObject |
+	color := self style at: 'fill' ifAbsent: [ self defaultFillColor ].
+	colorObject := (Color named: color) ifNil: [ Color named: self defaultFillColor ].
+	^ colorObject alpha: self styleFillOpacity 
+]
+
+{ #category : #style }
+OGCGeometry >> styleFillOpacity [
+	| fillOpacity |	
+	fillOpacity := self style at: 'fill-opacity' ifAbsent: [ self defaultFillOpacity ].
+	^ (fillOpacity asNumber) ifNil: [ ^ self defaultFillOpacity asNumber ]
+]
+
+{ #category : #style }
+OGCGeometry >> styleStrokeColor [
+	| color |
+	color := self style at: 'stroke' ifAbsent: [ self defaultStrokeColor ].
+	^ (Color named: color) ifNil: [ ^ Color named: self defaultStrokeColor ]
+]
+
+{ #category : #style }
+OGCGeometry >> styleStrokeWidth [
+	| width |
+	width := self style at: 'stroke-width' ifAbsent: [ self defaultStrokeWidth ].
+	^ (width asNumber) ifNil: [ ^ self defaultStrokeWidth asNumber ]
 ]
 
 { #category : #'methods analysis' }

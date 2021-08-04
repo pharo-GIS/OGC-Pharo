@@ -41,7 +41,8 @@ OGCGeometryCollection >> geometries [
 
 { #category : #accessing }
 OGCGeometryCollection >> geometries: anObject [
-	geometries := anObject
+	geometries := anObject.
+	geometries do: [ :each | each style: self style ].
 ]
 
 { #category : #accessing }

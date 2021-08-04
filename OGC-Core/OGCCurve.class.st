@@ -38,6 +38,11 @@ OGCCurve >> boundary [
 	self isClosed ifFalse: [ ^ self class withPoints: (OrderedCollection with: (self points allButLast last) with: self endPoint)  ] ifTrue: [ ^ OGCEmptySet new ]
 ]
 
+{ #category : #style }
+OGCCurve >> defaultFillColor [
+	^ 'transparent'
+]
+
 { #category : #accessing }
 OGCCurve >> dimension [ 
 	"The inherent dimension of this geometric object, which must be less than or equal to the coordinate dimension."

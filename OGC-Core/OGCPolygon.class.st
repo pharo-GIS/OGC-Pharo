@@ -42,7 +42,17 @@ OGCPolygon >> = anotherPolygon [
 OGCPolygon >> addInteriorRing: anOGCLinearRing [
 	anOGCLinearRing isClosed ifFalse: [ 
 		Error signal: 'linear ring is not closed' ].
-	interiorRings add: anOGCLinearRing 
+	self interiorRings add: anOGCLinearRing 
+]
+
+{ #category : #style }
+OGCPolygon >> defaultFillColor [
+	^ 'white'
+]
+
+{ #category : #style }
+OGCPolygon >> defaultFillOpacity [
+	^ '0.5'
 ]
 
 { #category : #accessing }
