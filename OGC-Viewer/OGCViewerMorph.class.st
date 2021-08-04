@@ -11,14 +11,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-OGCViewerMorph class >> displayFeaturesCollection: aFeaturesCollection [
-	^ self new displayFeaturesCollection: aFeaturesCollection
+OGCViewerMorph class >> displayObject: aOGCObject [
+	^ self new displayFeaturesCollection: aOGCObject asFeaturesCollection 
 ]
 
 { #category : #'as yet unclassified' }
-OGCViewerMorph class >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel [
-	^ self new displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel 
-	
+OGCViewerMorph class >> displayObject: aOGCObject withZoomLevel: aZoom [
+	^ self new displayFeaturesCollection: aOGCObject asFeaturesCollection withZoomLevel: aZoom
 ]
 
 { #category : #'as yet unclassified' }
@@ -82,6 +81,16 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: 
 	map addMorph: (aFeaturesCollection displayWithZoom: zoom).
 	
 	 ^ map
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph >> displayObject: aOGCObject [
+	^ self displayFeaturesCollection: aOGCObject asFeaturesCollection 
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph >> displayObject: aOGCObject withZoomLevel: aZoomLevel [
+	^ self displayFeaturesCollection: aOGCObject asFeaturesCollection withZoomLevel: aZoomLevel
 ]
 
 { #category : #initialization }

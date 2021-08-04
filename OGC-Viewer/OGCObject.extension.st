@@ -40,7 +40,7 @@ OGCObject >> inspectionMapWithTiles [
 	<inspectorPresentationOrder: 91 title: 'Map with Tiles'>
 
     ^ SpMorphPresenter new
-        morph: ((OGCViewerMorph withMapTiles: 1@1) displayFeaturesCollection: (self asFeaturesCollection));
+        morph: ((OGCViewerMorph withMapTiles: 3@2) displayFeaturesCollection: (self asFeaturesCollection));
         yourself 
 ]
 
