@@ -8,6 +8,16 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #styling }
+OGCFeatureCollection >> applyStyle: aStyleDictionary [
+	self features do: [ :aFeature | aFeature applyStyle: aStyleDictionary ]
+]
+
+{ #category : #'as yet unclassified' }
+OGCFeatureCollection >> applyStyle: aStyleDictionary ifFeature: aBlock [
+	self features do: [ :eachFeature | (aBlock value: eachFeature) ifTrue: [ eachFeature applyStyle: aStyleDictionary ] ]
+]
+
 { #category : #converting }
 OGCFeatureCollection >> asFeaturesCollection [ 
 	^ self

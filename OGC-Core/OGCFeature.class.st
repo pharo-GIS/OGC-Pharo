@@ -10,6 +10,11 @@ Class {
 	#category : #'OGC-Core'
 }
 
+{ #category : #styling }
+OGCFeature >> applyStyle: aStyleDictionary [
+	self geometry applyStyle: aStyleDictionary 
+]
+
 { #category : #converting }
 OGCFeature >> asFeaturesCollection [ 
 	^ OGCFeatureCollection new features: (Array with: self)
