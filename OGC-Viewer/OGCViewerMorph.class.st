@@ -28,12 +28,12 @@ OGCViewerMorph class >> withMapTiles [
 
 { #category : #'as yet unclassified' }
 OGCViewerMorph class >> withMapTiles: aPoint [
+	"(number of tiles in width)@(number of tiles in height) wanted at visualisation"
 	| aViewer |
 	aViewer := self new activateMapTiles.
-	aViewer displayParameters at: 'widthTileLimit' put: aPoint x.
-	aViewer displayParameters at: 'heightTileLimit' put: aPoint y.
+	aViewer displayParameters at: 'widthTileLimit' put: (((aPoint x) - 1 ) max: 0).
+	aViewer displayParameters at: 'heightTileLimit' put: (((aPoint y) - 1 ) max: 0).
 	^ aViewer
-	
 ]
 
 { #category : #initialization }
@@ -121,13 +121,15 @@ OGCViewerMorph >> getTilePng: aOGCPoint withZoomLevel: aZoomLevel [
 
 { #category : #operations }
 OGCViewerMorph >> getTilePngWithZoom: aZoomLevel x: aXvalue y: aYvalue [
-	| url |
+	| url morph |
+	morph := ImageMorph new.
 	url := 
 		'https://tile.openstreetmap.org/' 
 		, aZoomLevel asString , '/' 
 		, aXvalue asString , '/'
 		, aYvalue asString , '.png'.
-	^ (ZnEasy getPng: url) asMorph
+	morph := [ (ZnEasy getPng: url) asMorph ] onErrorDo: [ morph position: aXvalue@aYvalue ].
+	^ morph
 ]
 
 { #category : #accessing }
