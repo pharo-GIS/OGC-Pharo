@@ -13,9 +13,42 @@ OGCFeatureCollection >> applyStyle: aStyleDictionary [
 	self features do: [ :aFeature | aFeature applyStyle: aStyleDictionary ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #styling }
 OGCFeatureCollection >> applyStyle: aStyleDictionary ifFeature: aBlock [
 	self features do: [ :eachFeature | (aBlock value: eachFeature) ifTrue: [ eachFeature applyStyle: aStyleDictionary ] ]
+]
+
+{ #category : #styling }
+OGCFeatureCollection >> applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withColor: aColorName [
+	^ self applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: [ :a :b | a = b ] withColor: aColorName
+]
+
+{ #category : #styling }
+OGCFeatureCollection >> applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: aBlock withColor: aColorName [
+	| indexKey indexAssociateKey dataDictionary maxValue minValue |
+	" 1. organize data "
+	indexKey := aCSVArray first indexOf: aDataKey.
+	indexAssociateKey := aCSVArray first indexOf: aDataAssociateKey.
+	dataDictionary := Dictionary new.
+	aCSVArray allButFirst do: [ :aLine | dataDictionary at: (aLine at: indexAssociateKey) put: ((aLine at: indexKey) asNumber) ].
+	" 2. fix colors "
+	maxValue := dataDictionary values max.
+	minValue := dataDictionary values min.
+	(minValue = maxValue) 
+		ifTrue: [ 
+			"all features have the same value"
+			self applyStyle: (self class createStyleDictionary: { aColorName . nil . nil . nil })
+		] 
+		ifFalse: [  ].
+	" 3. apply color based on value"
+	dataDictionary keysDo: [ :aDataKey_i |
+		| opacity_rate equalityBlock|
+		opacity_rate := (((dataDictionary at: aDataKey_i) - minValue)/(maxValue - minValue)) asFloat round:3.
+		equalityBlock := [ :aFeature | aBlock value: (aFeature properties at: aDataAssociateKey) value: (aDataKey_i) ].
+		self applyStyle: (self class createStyleDictionary: { aColorName . opacity_rate . nil . nil }) ifFeature: equalityBlock .
+		" we add data to properties"
+		self features select: equalityBlock thenDo: [ :aFeature | aFeature properties at: (aDataKey) put: (dataDictionary at: aDataKey_i) ]
+		 ].
 ]
 
 { #category : #converting }

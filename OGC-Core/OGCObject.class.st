@@ -24,7 +24,7 @@ OGCObject >> applyStyle: aStyleDictionary [
 	self subclassResponsibility 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #styling }
 OGCObject >> applyStyle: aStyleDictionary ifFeature: aBlock [
 	self subclassResponsibility 
 ]
