@@ -14,6 +14,8 @@ BaselineOfOGC >> baseline: spec [
 			package: #'OGC-Core';
 			package: #'OGC-Core-Tests' with: [
 				spec requires: #('OGC-Core' ) ];
+			package: #'OGC-Viewer';
+			package: #'OGC-Viewer-Tests';
 			package: #'OGC-Geometry' with: [ 
 				spec requires: #('OGC-Core' 'Geometry') ];
 			package: #'OGC-Geometry-Tests' with: [ 
@@ -27,7 +29,8 @@ BaselineOfOGC >> baseline: spec [
 			group: 'Tests' with: #('OGC-Core-Tests');
 			group: 'Geometric' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
 			group: 'Spheric' with: #('OGC-Spheric' 'OGC-Spheric-Tests');
-			group: 'default' with: #('Core' 'Tests' 'Geometric' 'Spheric'). 
+			group: 'Visualisation' with: #('OGC-Viewer' 'OGC-Viewer-Tests');
+			group: 'default' with: #('Core' 'Tests' 'Geometric' 'Spheric' 'Visualisation'). 
 		]
 
 ]
