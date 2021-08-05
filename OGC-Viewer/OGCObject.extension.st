@@ -2,7 +2,7 @@ Extension { #name : #OGCObject }
 
 { #category : #'*OGC-Viewer' }
 OGCObject >> bestZoom [
-	^ self bestZoomWithZoomLimit: 19 widthTileLimit: 1 heightTileLimit: 1
+	^ self bestZoomWithZoomLimit: 19 widthTileLimit: 2 heightTileLimit: 1
 ]
 
 { #category : #'*OGC-Viewer' }
