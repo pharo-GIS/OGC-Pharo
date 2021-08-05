@@ -49,6 +49,18 @@ foreign key to an index of reference systems stored in either the same or some o
 	self subclassResponsibility 
 ]
 
+{ #category : #style }
+OGCGeometry >> applyStyle: aStyleDictionary [
+	aStyleDictionary keysDo: [ :aKey | self style at: aKey put: (aStyleDictionary at: aKey) ]
+]
+
+{ #category : #converting }
+OGCGeometry >> asFeaturesCollection [
+	| aFeature |
+	aFeature := OGCFeature new geometry: self.
+	^ aFeature asFeaturesCollection 
+]
+
 { #category : #basic }
 OGCGeometry >> boundary [
 	"Geometry — Returns the closure of the combinatorial boundary of this geometric object
@@ -82,6 +94,26 @@ for any geometry restricted to linear interpolations."
 { #category : #testing }
 OGCGeometry >> crosses: anotherGeometry [
 	self subclassResponsibility 
+]
+
+{ #category : #style }
+OGCGeometry >> defaultFillColor [
+	^ 'red'
+]
+
+{ #category : #style }
+OGCGeometry >> defaultFillOpacity [
+	^ '0'
+]
+
+{ #category : #style }
+OGCGeometry >> defaultStrokeColor [
+	^ 'red'
+]
+
+{ #category : #style }
+OGCGeometry >> defaultStrokeWidth [
+	^ '2'
 ]
 
 { #category : #'methods analysis' }
@@ -129,7 +161,7 @@ OGCGeometry >> geometryType [
 
 { #category : #initialization }
 OGCGeometry >> initialize [
-	spatialReferenceSystem := OGCGeometricProjection
+	spatialReferenceSystem := OGCSphericSystem 
 ]
 
 { #category : #'methods analysis' }
@@ -191,7 +223,7 @@ OGCGeometry >> overlaps: anotherGeometry [
 
 { #category : #basic }
 OGCGeometry >> rectangularEnvelope [
-	"Returns [ minX, maxX, minY, maxY ] to define the minimal rectangle which contains the geometry"
+	"Returns the minimal rectangle which contains the geometry"
 	self subclassResponsibility 
 ]
 
@@ -218,6 +250,35 @@ OGCGeometry >> style [
 OGCGeometry >> style: aDictionaryWithStyleSpecs [
 	style := aDictionaryWithStyleSpecs 
 	
+]
+
+{ #category : #style }
+OGCGeometry >> styleFillColor [
+	| color colorObject |
+	color := self style at: 'fill' ifAbsent: [ self defaultFillColor ].
+	colorObject := (Color named: color) ifNil: [ Color named: self defaultFillColor ].
+	^ colorObject alpha: self styleFillOpacity 
+]
+
+{ #category : #style }
+OGCGeometry >> styleFillOpacity [
+	| fillOpacity |	
+	fillOpacity := self style at: 'fill-opacity' ifAbsent: [ self defaultFillOpacity ].
+	^ (fillOpacity asNumber) ifNil: [ ^ self defaultFillOpacity asNumber ]
+]
+
+{ #category : #style }
+OGCGeometry >> styleStrokeColor [
+	| color |
+	color := self style at: 'stroke' ifAbsent: [ self defaultStrokeColor ].
+	^ (Color named: color) ifNil: [ ^ Color named: self defaultStrokeColor ]
+]
+
+{ #category : #style }
+OGCGeometry >> styleStrokeWidth [
+	| width |
+	width := self style at: 'stroke-width' ifAbsent: [ self defaultStrokeWidth ].
+	^ (width asNumber) ifNil: [ ^ self defaultStrokeWidth asNumber ]
 ]
 
 { #category : #'methods analysis' }

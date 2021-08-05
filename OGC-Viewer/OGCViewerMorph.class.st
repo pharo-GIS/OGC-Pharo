@@ -4,23 +4,50 @@ Class {
 	#instVars : [
 		'surface',
 		'map',
-		'repere'
+		'repere',
+		'displayParameters'
 	],
 	#category : #'OGC-Viewer'
 }
 
 { #category : #'as yet unclassified' }
-OGCViewerMorph class >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel [
-	^ self new displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel 
-	
+OGCViewerMorph class >> displayObject: aOGCObject [
+	^ self new displayFeaturesCollection: aOGCObject asFeaturesCollection 
 ]
 
 { #category : #'as yet unclassified' }
-OGCViewerMorph class >> displayPoint: aOGCPoint withZoomLevel: aZoomLevel [
-	| morph |
-	morph := self new displayPoint: aOGCPoint withZoomLevel: aZoomLevel.
-	morph openInWindowLabeled: 'Point, zoom : ', aZoomLevel asString.
-	
+OGCViewerMorph class >> displayObject: aOGCObject withZoomLevel: aZoom [
+	^ self new displayFeaturesCollection: aOGCObject asFeaturesCollection withZoomLevel: aZoom
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph class >> withMapTiles [
+	^ self withMapTiles: 3@2
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph class >> withMapTiles: aPoint [
+	"(number of tiles in width)@(number of tiles in height) wanted at visualisation"
+	| aViewer |
+	aViewer := self new activateMapTiles.
+	aViewer displayParameters at: 'widthTileLimit' put: (((aPoint x) - 1 ) max: 0).
+	aViewer displayParameters at: 'heightTileLimit' put: (((aPoint y) - 1 ) max: 0).
+	^ aViewer
+]
+
+{ #category : #initialization }
+OGCViewerMorph >> activateMapTiles [
+	displayParameters at: 'displayMapTiles' put: true
+]
+
+{ #category : #initialization }
+OGCViewerMorph >> defaultDisplayParameters [
+	| defaultDictionary |
+	defaultDictionary := Dictionary new.
+	defaultDictionary at: 'displayMapTiles' put: false.
+	defaultDictionary at: 'widthTileLimit' put: 3.
+	defaultDictionary at: 'heightTileLimit' put: 2.
+	^ defaultDictionary
 ]
 
 { #category : #initialization }
@@ -29,53 +56,69 @@ OGCViewerMorph >> defaultExtent [
 ]
 
 { #category : #operations }
-OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel [
-	| zoom rectangularTileEnvelope coordNext |
-	zoom := aZoomLevel min: 19.
-	" 1. define four map tiles to define corners "
-	rectangularTileEnvelope := self rectangularTileEnvelope: aFeaturesCollection withZoom: zoom.
-
-	" 2. load all map tiles and display complete map background "
-	map := ImageMorph new.
-	coordNext := 0@0.
-	(rectangularTileEnvelope at: 'minX') to: (rectangularTileEnvelope at: 'maxX') do: [ :x_i |
-		| tile_i |
-		(rectangularTileEnvelope at: 'minY') to: (rectangularTileEnvelope at: 'maxY') do: [ :y_i |
-			tile_i := self getTilePngWithZoom: zoom x: x_i y: y_i.
-			tile_i position: coordNext.
-			coordNext := coordNext x @ tile_i bottom.
-			map addMorph: tile_i.
-			] .
-		coordNext := tile_i right @ 0.
-		].
-	
-	" 3. display features "
-	aFeaturesCollection features do: [ :each |
-		| morph offsetX offsetY |
-		offsetX := rectangularTileEnvelope at: 'minX'.
-		offsetY := rectangularTileEnvelope at: 'minY'.
-		morph := each geometry displayWithZoom: zoom offsetX: offsetX offsetY: offsetY.
-		(morph isArray ) 
-			ifTrue: [ 
-				| aMorphFromCollection | 
-				aMorphFromCollection := ImageMorph new.
-				morph do: [ :eachMorph | aMorphFromCollection addMorph: eachMorph ].
-				map addMorph: aMorphFromCollection ]
-			ifFalse: [ map addMorph: morph ].
-	].
-	 ^ map
+OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection [
+	^ self displayFeaturesCollection: aFeaturesCollection withZoomLevel: (aFeaturesCollection bestZoomWithZoomLimit: 19 widthTileLimit: self widthTileLimit heightTileLimit: self heightTileLimit )
 ]
 
 { #category : #operations }
-OGCViewerMorph >> displayPoint: aOGCPoint withZoomLevel: aZoomLevel [
-	| repere_i repereX repereY |
-	map := self getTilePng: aOGCPoint withZoomLevel: aZoomLevel.
-	repere_i := self repere.
-	repereX := ((self repere position) x) +(aOGCPoint xPixelInTileWithZoom: aZoomLevel).
-	repereY := ((self repere position) y) + (aOGCPoint yPixelInTileWithZoom: aZoomLevel).
-	repere_i position: repereX @ repereY.
-	map addMorph: repere_i.
-	^ map
+OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel [
+	| zoom rectangularTileEnvelope |
+	zoom := aZoomLevel min: 19.
+	" 1. define four map tiles to define corners "
+	rectangularTileEnvelope := aFeaturesCollection rectangularTileEnvelopeWithZoom: zoom.
+
+	map := ImageMorph new.
+	
+	(displayParameters at: 'displayMapTiles') ifTrue: [ 
+		" 2. if true: load all map tiles and display complete map background "
+		| xInterval yInterval |
+		xInterval := (rectangularTileEnvelope origin x) to: ((rectangularTileEnvelope origin x) + self widthTileLimit).
+		yInterval := (rectangularTileEnvelope origin y) to: ((rectangularTileEnvelope origin y) + self heightTileLimit).
+		map addMorph: (self getMapTilesWithZoom: zoom xInterval: xInterval yInterval: yInterval).
+	].
+	
+	" 3. display features "
+	map addMorph: (aFeaturesCollection displayWithZoom: zoom).
+	
+	 ^ map
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph >> displayObject: aOGCObject [
+	^ self displayFeaturesCollection: aOGCObject asFeaturesCollection 
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph >> displayObject: aOGCObject withZoomLevel: aZoomLevel [
+	^ self displayFeaturesCollection: aOGCObject asFeaturesCollection withZoomLevel: aZoomLevel
+]
+
+{ #category : #initialization }
+OGCViewerMorph >> displayParameters [
+	^ displayParameters 
+]
+
+{ #category : #initialization }
+OGCViewerMorph >> displayParameters: aDictionary [
+	displayParameters  := aDictionary 
+]
+
+{ #category : #'as yet unclassified' }
+OGCViewerMorph >> getMapTilesWithZoom: zoom xInterval: aXInterval yInterval: aYInterval [
+	| mapTiles coordNext|
+	mapTiles := ImageMorph new.
+	coordNext := 0@0.
+	aXInterval do: [ :x_i |
+		| tile_i |
+		aYInterval do: [ :y_i |
+			tile_i := self getTilePngWithZoom: zoom x: x_i y: y_i.
+			tile_i position: coordNext.
+			coordNext := coordNext x @ tile_i bottom.
+			mapTiles addMorph: tile_i.
+			] .
+		coordNext := tile_i right @ 0.
+		].
+	^ mapTiles
 ]
 
 { #category : #operations }
@@ -87,13 +130,20 @@ OGCViewerMorph >> getTilePng: aOGCPoint withZoomLevel: aZoomLevel [
 
 { #category : #operations }
 OGCViewerMorph >> getTilePngWithZoom: aZoomLevel x: aXvalue y: aYvalue [
-	| url |
+	| url morph |
+	morph := ImageMorph new.
 	url := 
 		'https://tile.openstreetmap.org/' 
 		, aZoomLevel asString , '/' 
 		, aXvalue asString , '/'
 		, aYvalue asString , '.png'.
-	^ (ZnEasy getPng: url) asMorph
+	morph := [ (ZnEasy getPng: url) asMorph ] onErrorDo: [ morph position: aXvalue@aYvalue ].
+	^ morph
+]
+
+{ #category : #accessing }
+OGCViewerMorph >> heightTileLimit [
+		^ self displayParameters at: 'heightTileLimit'
 ]
 
 { #category : #initialization }
@@ -101,26 +151,7 @@ OGCViewerMorph >> initialize [
 	super initialize.
 	surface := AthensCairoSurface extent: self defaultExtent.
 	self title: 'OGC Viewer'.
-]
-
-{ #category : #accessing }
-OGCViewerMorph >> padding [
-	" extra-edge in number of tiles to consider to build the map"
-	^ 0
-]
-
-{ #category : #operations }
-OGCViewerMorph >> rectangularTileEnvelope: aFeaturesCollection withZoom: zoom [
-	| rectangularEnvelope corner00 corner11 minX maxX minY maxY |
-	" 1. define four map tils to define corners "
-	rectangularEnvelope := aFeaturesCollection rectangularEnvelope.
-	corner00 := (OGCPoint x: (rectangularEnvelope at: 'minX') y: (rectangularEnvelope at: 'maxY')).
-	corner11 := (OGCPoint x: (rectangularEnvelope at: 'maxX') y: (rectangularEnvelope at: 'minY')).
-	minX := (corner00 xTileWithZoom: zoom) - self padding.
-	maxX := (corner11 xTileWithZoom: zoom) + self padding.
-	minY := (corner00 yTileWithZoom: zoom) - self padding.
-	maxY := (corner11 yTileWithZoom: zoom) + self padding.
-	^ Dictionary newFromPairs: {'minX' . minX . 'maxX' . maxX . 'minY' . minY . 'maxY' . maxY }
+	self displayParameters: self defaultDisplayParameters
 ]
 
 { #category : #running }
@@ -133,6 +164,11 @@ OGCViewerMorph >> run [
 { #category : #accessing }
 OGCViewerMorph >> tileSize [
 	^ 256
+]
+
+{ #category : #accessing }
+OGCViewerMorph >> widthTileLimit [
+	^ self displayParameters at: 'widthTileLimit'
 ]
 
 { #category : #accessing }

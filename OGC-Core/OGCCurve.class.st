@@ -38,6 +38,11 @@ OGCCurve >> boundary [
 	self isClosed ifFalse: [ ^ self class withPoints: (OrderedCollection with: (self points allButLast last) with: self endPoint)  ] ifTrue: [ ^ OGCEmptySet new ]
 ]
 
+{ #category : #style }
+OGCCurve >> defaultFillColor [
+	^ 'transparent'
+]
+
 { #category : #accessing }
 OGCCurve >> dimension [ 
 	"The inherent dimension of this geometric object, which must be less than or equal to the coordinate dimension."
@@ -91,13 +96,10 @@ OGCCurve >> points: anObject [
 
 { #category : #basic }
 OGCCurve >> rectangularEnvelope [
-	" Returns [ minX, maxX, minY, maxY ] to define minimal rectangle which contains all features "
-	| minX maxX minY maxY |
-	minX := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'minX' ]) min.
-	maxX := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'maxX' ]) max.
-	minY := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'minY' ]) min.
-	maxY := (points collect: [ :aPoint | aPoint rectangularEnvelope at: 'maxY' ]) max.
-	^ Dictionary newFromPairs: {'minX' . minX . 'maxX' . maxX . 'minY' . minY . 'maxY' . maxY }
+	" Returns the minimal rectangle which contains all features "
+	| allRectangularEnvelopes |
+	allRectangularEnvelopes := points collect: [ :aPoint | aPoint rectangularEnvelope  ].
+	^ allRectangularEnvelopes reduce: [ :rect1 :rect2 | rect1 merge: rect2 ]
 ]
 
 { #category : #accessing }

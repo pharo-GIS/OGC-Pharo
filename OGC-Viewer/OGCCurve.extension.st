@@ -1,16 +1,6 @@
 Extension { #name : #OGCCurve }
 
 { #category : #'*OGC-Viewer' }
-OGCCurve >> colorFill [
-	^ self style at: 'fill' ifAbsent: [ ^ Color transparent ]
-]
-
-{ #category : #'*OGC-Viewer' }
-OGCCurve >> colorStroke [
-	^ self style at: 'stroke' ifAbsent: [ ^ Color red ]
-]
-
-{ #category : #'*OGC-Viewer' }
 OGCCurve >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	| allXPixel allYPixel surface amplitudeX amplitudeY initialOffsetX initialOffsetY coordInit coordNext pointInit morph path |
 	" 1. define working surface "
@@ -49,12 +39,13 @@ OGCCurve >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 		].
 		can setShape: path.		
 	].	
+	
 	surface drawDuring: [ :can | 
-		can setPaint: self colorFill.
+		can setPaint: self styleFillColor.
 		can draw 
 	].
 	surface drawDuring: [ :can | 
-		(can setStrokePaint: self colorStroke ) width: self width.
+		(can setStrokePaint: self styleStrokeColor ) width: self styleStrokeWidth.
 		can draw
 	].
 	" 5. change result position "
@@ -63,9 +54,4 @@ OGCCurve >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 		((initialOffsetX sign: (-1) ) + (self startPoint xPixelWithOffset: offsetX withZoom: zoom))
 		@ ((initialOffsetY sign: (-1) ) + (self startPoint yPixelWithOffset: offsetY withZoom: zoom)).
 	^ morph
-]
-
-{ #category : #'*OGC-Viewer' }
-OGCCurve >> width [
-	^ self style at: 'stroke-width' ifAbsent: [ ^ 2 ]
 ]
