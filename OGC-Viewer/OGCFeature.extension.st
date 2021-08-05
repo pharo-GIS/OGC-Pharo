@@ -10,6 +10,12 @@ OGCFeature >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue [
 
 { #category : #'*OGC-Viewer' }
 OGCFeature >> handleClick [
-	" at click on my morph: inspect my properties "
-	(self properties ) inspect.
+	" at click on my morph: open window with properties "
+	| textToDisplay |
+	textToDisplay := String new.
+	self properties keysAndValuesDo: [ :aKey :aValue |
+		textToDisplay := textToDisplay , aKey asString , ' : ' , aValue asString , '
+' ].
+	OGCInformationPresenter isClosed ifTrue: [ OGCInformationPresenter open ].
+	OGCInformationPresenter textPresenter text: textToDisplay .
 ]

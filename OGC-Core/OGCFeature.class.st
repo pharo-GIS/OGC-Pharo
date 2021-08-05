@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'geometry',
 		'properties',
-		'id',
-		'informationWindow'
+		'id'
 	],
 	#category : #'OGC-Core'
 }
