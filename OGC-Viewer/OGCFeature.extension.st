@@ -16,6 +16,7 @@ OGCFeature >> handleClick [
 	self properties keysAndValuesDo: [ :aKey :aValue |
 		textToDisplay := textToDisplay , aKey asString , ' : ' , aValue asString , '
 ' ].
-	OGCInformationPresenter isClosed ifTrue: [ OGCInformationPresenter open ].
-	OGCInformationPresenter textPresenter text: textToDisplay .
+	OGCInformationWindowPresenter isClosed ifTrue: [ OGCInformationWindowPresenter open ].
+	OGCInformationWindowPresenter textPresenter text: textToDisplay .
+	OGCInformationWindowPresenter inspectButton action: [ self inspect ].
 ]
