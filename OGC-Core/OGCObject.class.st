@@ -19,13 +19,13 @@ OGCObject class >> isAbstract [
 	^ self = OGCObject
 ]
 
-{ #category : #styling }
+{ #category : #style }
 OGCObject >> applyStyle: aStyleDictionary [
 	" apply the given style (as a dictionary) to every elements"
 	self subclassResponsibility 
 ]
 
-{ #category : #styling }
+{ #category : #style }
 OGCObject >> applyStyle: aStyleDictionary ifFeature: aBlock [
 	" apply the given style to features which respect given block closure"
 	self subclassResponsibility 

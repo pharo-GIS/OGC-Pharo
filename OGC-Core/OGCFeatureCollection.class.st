@@ -8,22 +8,22 @@ Class {
 	#category : #'OGC-Core'
 }
 
-{ #category : #styling }
+{ #category : #style }
 OGCFeatureCollection >> applyStyle: aStyleDictionary [
 	self features do: [ :aFeature | aFeature applyStyle: aStyleDictionary ]
 ]
 
-{ #category : #styling }
+{ #category : #style }
 OGCFeatureCollection >> applyStyle: aStyleDictionary ifFeature: aBlock [
 	self features do: [ :eachFeature | eachFeature applyStyle: aStyleDictionary ifFeature: aBlock ]
 ]
 
-{ #category : #styling }
+{ #category : #style }
 OGCFeatureCollection >> applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withColor: aColorName [
 	^ self applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: [ :a :b | a = b ] withColor: aColorName
 ]
 
-{ #category : #styling }
+{ #category : #style }
 OGCFeatureCollection >> applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: aBlock withColor: aColorName [
 	| indexKey indexAssociateKey dataDictionary maxValue minValue |
 	" 1. organize data "
