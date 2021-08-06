@@ -1,3 +1,10 @@
+"
+I represent the GeoJSON element called FeatureCollection which gathers:
+- a collection of `OGCFeature` objects
+- a dictionary of Properties = information about me
+
+Instanciation: `OGCFeatureCollection class>>#features:`
+"
 Class {
 	#name : #OGCFeatureCollection,
 	#superclass : #OGCObject,
@@ -7,6 +14,11 @@ Class {
 	],
 	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCFeatureCollection class >> features: aCollectionOfFeatures [
+	^ self new features: aCollectionOfFeatures
+]
 
 { #category : #style }
 OGCFeatureCollection >> applyStyle: aStyleDictionary [

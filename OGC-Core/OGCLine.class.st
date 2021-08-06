@@ -1,9 +1,11 @@
 "
-6.1.7 LineString, Line, LinearRing
+###6.1.7 LineString, Line, LinearRing
 
-6.1.7.1 Description 
+###6.1.7.1 Description 
 
-A Line is a LineString with exactly 2 Points. 
+A Line is a LineString with exactly 2 Points = a segment.
+
+Instanciation: `OGCLine class>>#withPoints:`
 "
 Class {
 	#name : #OGCLine,

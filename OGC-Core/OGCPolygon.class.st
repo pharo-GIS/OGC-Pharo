@@ -1,7 +1,7 @@
 "
-6.1.11 Polygon, Triangle
+###6.1.11 Polygon, Triangle
 
-6.1.11.1 Description
+###6.1.11.1 Description
 
 A Polygon is a planar Surface defined by 1 exterior boundary and 0 or more interior boundaries. Each interior
 boundary defines a hole in the Polygon. A Triangle is a polygon with 3 distinct, non-collinear vertices and no

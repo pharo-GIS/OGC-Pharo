@@ -1,3 +1,11 @@
+"
+I represent the ""Feature"" GeoJSON element.
+
+I contain:
+- a geospatial geometry = `OGCGeometry`
+- a dictionary of Properties
+- (if needed) an id
+"
 Class {
 	#name : #OGCFeature,
 	#superclass : #OGCObject,
@@ -8,6 +16,11 @@ Class {
 	],
 	#category : #'OGC-Core'
 }
+
+{ #category : #accessing }
+OGCFeature class >> geometry: aOGCGeometry [
+	^ self new geometry: aOGCGeometry 
+]
 
 { #category : #style }
 OGCFeature >> applyStyle: aStyleDictionary [
