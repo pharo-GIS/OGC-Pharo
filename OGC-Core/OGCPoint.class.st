@@ -95,6 +95,16 @@ OGCPoint >> isMeasured [
 	^ m isNotNil
 ]
 
+{ #category : #accessing }
+OGCPoint >> latitude [
+	^ self y
+]
+
+{ #category : #accessing }
+OGCPoint >> latitude: aNumberOrString [
+	self y: aNumberOrString asNumber
+]
+
 { #category : #testing }
 OGCPoint >> locateBetween: mStart and: mEnd [
 	"Returns a derived geometry collection value
@@ -103,6 +113,16 @@ Geometry” for more details."
 	^ (m >= mStart and: m<= mEnd) 
 			ifTrue: [ OGCMultiPoint withPoints: (Bag with: self) ]
 			ifFalse: [ OGCEmptySet new ]
+]
+
+{ #category : #accessing }
+OGCPoint >> longitude [
+	^ self x
+]
+
+{ #category : #accessing }
+OGCPoint >> longitude: aNumberOrString [
+	self x: aNumberOrString asNumber
 ]
 
 { #category : #accessing }

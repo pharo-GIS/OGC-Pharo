@@ -55,6 +55,11 @@ OGCGeometry >> applyStyle: aStyleDictionary [
 ]
 
 { #category : #converting }
+OGCGeometry >> asFeature [
+	^ OGCFeature new geometry: self
+]
+
+{ #category : #converting }
 OGCGeometry >> asFeaturesCollection [
 	| aFeature |
 	aFeature := OGCFeature new geometry: self.
@@ -157,11 +162,6 @@ cases, this coordinate will be outside the range of validity for the Spatial Ref
 OGCGeometry >> geometryType [
 	"Returns the name of the instantiable subtype of Geometry of which this geometric object is an instantiable member"
 	^ self class geometryType
-]
-
-{ #category : #initialization }
-OGCGeometry >> initialize [
-	spatialReferenceSystem := OGCSphericSystem 
 ]
 
 { #category : #'methods analysis' }

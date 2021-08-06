@@ -30,7 +30,7 @@ BaselineOfOGC >> baseline: spec [
 			group: 'Geometric' with: #('OGC-Geometry' 'OGC-Geometry-Tests');
 			group: 'Spheric' with: #('OGC-Spheric' 'OGC-Spheric-Tests');
 			group: 'Visualisation' with: #('OGC-Viewer' 'OGC-Viewer-Tests');
-			group: 'default' with: #('Core' 'Tests' 'Geometric' 'Spheric' 'Visualisation'). 
+			group: 'default' with: #('Core' 'Tests' 'Spheric' 'Visualisation'). 
 		]
 
 ]
