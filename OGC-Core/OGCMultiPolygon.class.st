@@ -27,3 +27,9 @@ Class {
 OGCMultiPolygon class >> geometryType [
 	^ 'MultiPolygon'
 ]
+
+{ #category : #accessing }
+OGCMultiPolygon >> coordinates: aCollection [ 
+	self geometries: (aCollection collect: [ :each |
+		OGCPolygon new coordinates: each ])
+]

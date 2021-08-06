@@ -52,7 +52,7 @@ OGCFeature >> id: aStringIdOrInteger [
 
 { #category : #accessing }
 OGCFeature >> properties [
-	^ properties 
+	^ properties ifNil: [ ^ properties := Dictionary new ]
 ]
 
 { #category : #accessing }

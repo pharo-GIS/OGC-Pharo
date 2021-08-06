@@ -38,6 +38,16 @@ OGCCurve >> boundary [
 	self isClosed ifFalse: [ ^ self class withPoints: (OrderedCollection with: (self points allButLast last) with: self endPoint)  ] ifTrue: [ ^ OGCEmptySet new ]
 ]
 
+{ #category : #accessing }
+OGCCurve >> coordinates [
+	^ self points
+]
+
+{ #category : #accessing }
+OGCCurve >> coordinates: aCollection [ 
+	self points: (aCollection collect: [ :each | OGCPoint xy: each ])
+]
+
 { #category : #style }
 OGCCurve >> defaultFillColor [
 	^ 'transparent'

@@ -55,6 +55,11 @@ OGCGeometry >> applyStyle: aStyleDictionary [
 ]
 
 { #category : #converting }
+OGCGeometry >> asFeature [
+	^ OGCFeature new geometry: self
+]
+
+{ #category : #converting }
 OGCGeometry >> asFeaturesCollection [
 	| aFeature |
 	aFeature := OGCFeature new geometry: self.
@@ -89,6 +94,16 @@ object. Convex hulls, being dependent on straight lines, can be accurately repre
 for any geometry restricted to linear interpolations."
 	self subclassResponsibility 
 	
+]
+
+{ #category : #accessing }
+OGCGeometry >> coordinates [
+	self subclassResponsibility 
+]
+
+{ #category : #accessing }
+OGCGeometry >> coordinates: newCoordinates [
+	self subclassResponsibility 
 ]
 
 { #category : #testing }

@@ -27,6 +27,13 @@ OGCPoint class >> geometryType [
 ]
 
 { #category : #'instance creation' }
+OGCPoint class >> latitude: latitude longitude: longitude [ 
+	^ self new
+		x: longitude;
+		y: latitude 
+]
+
+{ #category : #'instance creation' }
 OGCPoint class >> x: xNumber y: yNumber [
 	^ self new 
 		x: xNumber;
@@ -71,6 +78,20 @@ section 3.12.2). The return type is integer, but is interpreted as Boolean, TRUE
 ]
 
 { #category : #accessing }
+OGCPoint >> coordinates [
+	^ Array braceWith: self x with: self y
+]
+
+{ #category : #accessing }
+OGCPoint >> coordinates: aCollection [
+	"a point should only have two coordinates being numbers"
+	| coordinates |
+	coordinates := (aCollection first: 2) collect: #asNumber.
+	self x: coordinates first.
+	self y: coordinates second.
+]
+
+{ #category : #accessing }
 OGCPoint >> dimension [
 	^ 0
 ]
@@ -95,6 +116,16 @@ OGCPoint >> isMeasured [
 	^ m isNotNil
 ]
 
+{ #category : #accessing }
+OGCPoint >> latitude [
+	^ self y
+]
+
+{ #category : #accessing }
+OGCPoint >> latitude: aNumberOrString [
+	self y: aNumberOrString asNumber
+]
+
 { #category : #testing }
 OGCPoint >> locateBetween: mStart and: mEnd [
 	"Returns a derived geometry collection value
@@ -103,6 +134,16 @@ Geometry” for more details."
 	^ (m >= mStart and: m<= mEnd) 
 			ifTrue: [ OGCMultiPoint withPoints: (Bag with: self) ]
 			ifFalse: [ OGCEmptySet new ]
+]
+
+{ #category : #accessing }
+OGCPoint >> longitude [
+	^ self x
+]
+
+{ #category : #accessing }
+OGCPoint >> longitude: aNumberOrString [
+	self x: aNumberOrString asNumber
 ]
 
 { #category : #accessing }
