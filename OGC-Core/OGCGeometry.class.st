@@ -96,6 +96,16 @@ for any geometry restricted to linear interpolations."
 	
 ]
 
+{ #category : #accessing }
+OGCGeometry >> coordinates [
+	self subclassResponsibility 
+]
+
+{ #category : #accessing }
+OGCGeometry >> coordinates: newCoordinates [
+	self subclassResponsibility 
+]
+
 { #category : #testing }
 OGCGeometry >> crosses: anotherGeometry [
 	self subclassResponsibility 

@@ -45,6 +45,27 @@ OGCPolygon >> addInteriorRing: anOGCLinearRing [
 	self interiorRings add: anOGCLinearRing 
 ]
 
+{ #category : #accessing }
+OGCPolygon >> coordinates [
+	^ exteriorRing points collect: #coordinates
+]
+
+{ #category : #accessing }
+OGCPolygon >> coordinates: aCollection [ 
+	(aCollection anySatisfy: [ :each | each class = Array ])
+	ifTrue: [
+		"coordinates contain an exterior ring and interior rings"
+		self addExteriorRing: (OGCLinearRing new coordinates: aCollection first).
+		aCollection allButFirst do: [ :each |
+		self addInteriorRing: (OGCLinearRing new coordinates: each)  ]
+		]
+	ifFalse: [ 
+		"coordiniates only contain an exterior ring"
+		aCollection do: [ :each |
+		self addExteriorRing: (OGCLinearRing new coordinates: each)  ]
+		 ]
+]
+
 { #category : #style }
 OGCPolygon >> defaultFillColor [
 	^ 'white'

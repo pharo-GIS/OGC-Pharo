@@ -78,6 +78,20 @@ section 3.12.2). The return type is integer, but is interpreted as Boolean, TRUE
 ]
 
 { #category : #accessing }
+OGCPoint >> coordinates [
+	^ Array braceWith: self x with: self y
+]
+
+{ #category : #accessing }
+OGCPoint >> coordinates: aCollection [
+	"a point should only have two coordinates being numbers"
+	| coordinates |
+	coordinates := (aCollection first: 2) collect: #asNumber.
+	self x: coordinates first.
+	self y: coordinates second.
+]
+
+{ #category : #accessing }
 OGCPoint >> dimension [
 	^ 0
 ]

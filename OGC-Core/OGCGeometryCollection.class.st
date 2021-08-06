@@ -29,6 +29,11 @@ OGCGeometryCollection >> = anotherMultiPoint [
 	^ self geometries asSet = anotherMultiPoint geometries asSet
 ]
 
+{ #category : #accessing }
+OGCGeometryCollection >> coordinates [
+	^ geometries collect: #coordinates
+]
+
 { #category : #basic }
 OGCGeometryCollection >> dimension [
 	^ geometries sorted: [ :e1 :e2 | e1 dimension > e2 dimension ] first

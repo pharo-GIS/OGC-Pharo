@@ -13,3 +13,9 @@ Class {
 OGCMultiLineString class >> geometryType [
 	^ 'MultiLineString'
 ]
+
+{ #category : #accessing }
+OGCMultiLineString >> coordinates: aCollection [ 
+	geometries := aCollection collect: [ :each |
+		OGCLineString new coordinates: each ]
+]
