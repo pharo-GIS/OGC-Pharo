@@ -27,6 +27,13 @@ OGCPoint class >> geometryType [
 ]
 
 { #category : #'instance creation' }
+OGCPoint class >> latitude: latitude longitude: longitude [ 
+	^ self new
+		x: longitude;
+		y: latitude 
+]
+
+{ #category : #'instance creation' }
 OGCPoint class >> x: xNumber y: yNumber [
 	^ self new 
 		x: xNumber;
