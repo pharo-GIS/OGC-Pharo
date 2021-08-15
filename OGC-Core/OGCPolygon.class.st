@@ -76,17 +76,6 @@ OGCPolygon >> defaultFillOpacity [
 	^ '0.5'
 ]
 
-{ #category : #accessing }
-OGCPolygon >> exteriorRing [
-	"Returns the exterior ring of this Polygon as a LineString"
-	^ exteriorRing
-]
-
-{ #category : #accessing }
-OGCPolygon >> exteriorRing: anObject [
-	exteriorRing := anObject
-]
-
 { #category : #comparing }
 OGCPolygon >> hash [ 
 	^ self interiorRings hash bitXor: self exteriorRing hash

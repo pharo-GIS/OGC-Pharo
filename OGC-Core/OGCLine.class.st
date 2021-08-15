@@ -30,13 +30,6 @@ OGCLine class >> withPoints: aCollectionOfPoints [
 		ifFalse: [ self errorIncorrectNumberOfPoints: aCollectionOfPoints size]
 ]
 
-{ #category : #'methods analysis' }
-OGCLine >> intersection: anotherGeometry [
-	"Returns a geometric object that represents the
-Point set intersection of this geometric object with anotherGeometry."
-	^ spatialReferenceSystem intersection: anotherGeometry withLine: self
-]
-
 { #category : #accessing }
 OGCLine >> length [
 	^ spatialReferenceSystem length: self

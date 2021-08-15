@@ -12,37 +12,8 @@ OGCLineStringTest >> testLength [
 	points add: point3.
 	points add: point4.
 	lineS := OGCLineString withPoints: points.
-	(point1 spatialReferenceSystem name = 'Geometric')
+	(point1 spatialReferenceSystem name = 'OGCGeometricProjection')
 		ifTrue: [ self assert: lineS length equals: 15 ]
 	
 
-]
-
-{ #category : #'*OGC-Geometry-Tests' }
-OGCLineStringTest >> testLineStringsIntersection [
-	| point1 point2 point3 point4 pointIntersection line1 line2 |
-	point1 := OGCPoint xy: #(-1 -1).
-	point2 := OGCPoint xy: #(1 1).
-	point3 := OGCPoint xy: #(-1 1).
-	point4 := OGCPoint xy: #(1 -1).
-	pointIntersection := OGCPoint xy: #(0 0).
-	line1 := OGCLineString withPoints: { point1 . point2 }.
-	line2 := OGCLineString withPoints: { point3 . point4 }.
-	(point1 spatialReferenceSystem name = 'Geometric')
-		ifTrue: [ self assert: (line1 intersection: line2) equals: pointIntersection ]
-		ifFalse: [ self skip ]
-]
-
-{ #category : #'*OGC-Geometry-Tests' }
-OGCLineStringTest >> testLinesIntersection [
-	| point1 point2 point3 point4 pointIntersection line1 line2 |
-	point1 := OGCPoint xy: #(-1 -1).
-	point2 := OGCPoint xy: #(1 1).
-	point3 := OGCPoint xy: #(-1 1).
-	point4 := OGCPoint xy: #(1 -1).
-	pointIntersection := OGCPoint xy: #(0 0).
-	line1 := OGCLine withPoints: { point1 . point2 }.
-	line2 := OGCLine withPoints: { point3 . point4 }.
-	(point1 spatialReferenceSystem name = 'Geometric')
-		ifTrue: [ self assert: (line1 intersection: line2) equals: pointIntersection ]
 ]

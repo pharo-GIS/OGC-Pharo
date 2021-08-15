@@ -47,6 +47,16 @@ OGCSurface >> dimension [
 	^ 2
 ]
 
+{ #category : #accessing }
+OGCSurface >> exteriorRing [
+	^ exteriorRing
+]
+
+{ #category : #accessing }
+OGCSurface >> exteriorRing: anObject [
+	exteriorRing := anObject
+]
+
 { #category : #basic }
 OGCSurface >> pointOnSurface [
 	"A Point guaranteed to be on this Surface"
