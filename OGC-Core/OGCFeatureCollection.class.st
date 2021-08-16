@@ -31,6 +31,25 @@ OGCFeatureCollection >> addFeaturePropertyKey: aKey withData: aDictionary withId
 ]
 
 { #category : #style }
+OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withColor: aColorName [
+	| maxValue minValue |
+	maxValue := (self features collect: [ :aFeature | (aFeature properties at: aDataKey) asNumber ]) max.
+	minValue := (self features collect: [ :aFeature | (aFeature properties at: aDataKey) asNumber ]) min.
+	(minValue = maxValue) 
+		ifTrue: [ 
+			"all features have the same value"
+			self applyStyle: (self class createStyleDictionary: { aColorName . nil . nil . nil })
+		] 
+		ifFalse: [ 
+			self features do: [ :aFeature |
+		| opacity_rate |
+		opacity_rate := (((aFeature properties at: aDataKey) - minValue)/(maxValue - minValue)) asFloat round:3.
+		self applyStyle: (self class createStyleDictionary: { aColorName . opacity_rate . nil . nil }) ifFeature: [ :each | each = aFeature ]
+			 ]
+		].
+]
+
+{ #category : #style }
 OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withColor: aColorName [
 	^ self applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: [ :a :b | a = b ] withColor: aColorName
 ]
