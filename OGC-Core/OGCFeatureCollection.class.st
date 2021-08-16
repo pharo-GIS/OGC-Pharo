@@ -56,30 +56,20 @@ OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: a
 
 { #category : #style }
 OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: aBlock withColor: aColorName [
-	| indexKey indexAssociateKey dataDictionary maxValue minValue |
+	| indexKey indexAssociateKey dataDictionary |
 	" 1. organize data "
 	indexKey := aCSVArray first indexOf: aDataKey.
 	indexAssociateKey := aCSVArray first indexOf: aDataAssociateKey.
 	dataDictionary := Dictionary new.
 	aCSVArray allButFirst do: [ :aLine | dataDictionary at: (aLine at: indexAssociateKey) put: ((aLine at: indexKey) asNumber) ].
-	" 2. fix colors "
-	maxValue := dataDictionary values max.
-	minValue := dataDictionary values min.
-	(minValue = maxValue) 
-		ifTrue: [ 
-			"all features have the same value"
-			self applyStyle: (self class createStyleDictionary: { aColorName . nil . nil . nil })
-		] 
-		ifFalse: [  ].
-	" 3. apply color based on value"
+	" 2. add data to properties"
 	dataDictionary keysDo: [ :aDataKey_i |
-		| opacity_rate equalityBlock|
-		opacity_rate := (((dataDictionary at: aDataKey_i) - minValue)/(maxValue - minValue)) asFloat round:3.
+		| equalityBlock|
 		equalityBlock := [ :aFeature | aBlock value: (aFeature properties at: aDataAssociateKey) value: (aDataKey_i) ].
-		self applyStyle: (self class createStyleDictionary: { aColorName . opacity_rate . nil . nil }) ifFeature: equalityBlock .
-		" we add data to properties"
 		self features select: equalityBlock thenDo: [ :aFeature | aFeature properties at: (aDataKey) put: (dataDictionary at: aDataKey_i) ]
 		 ].
+	" 3. apply continuous coloration"
+	self applyContinuousColorationOn: aDataKey withColor: aColorName
 ]
 
 { #category : #style }
@@ -97,7 +87,7 @@ OGCFeatureCollection >> asFeaturesCollection [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 OGCFeatureCollection >> detectFeatureIndexWithPropertyKey: aKey andValue: aValue [
 	^ self features detectIndex: [ :aFeature | aFeature properties includesAssociation: (Association key: aKey value: aValue) ]
 ]
