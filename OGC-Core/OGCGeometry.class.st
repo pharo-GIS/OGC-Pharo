@@ -201,7 +201,7 @@ OGCGeometry >> is3D [
 
 { #category : #basic }
 OGCGeometry >> isEmpty [ 
-	self subclassResponsibility 
+	^ false
 ]
 
 { #category : #basic }

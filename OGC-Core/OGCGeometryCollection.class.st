@@ -5,8 +5,6 @@
 
 A GeometryCollection is a geometric object that is **a collection of some number of geometric objects**.
 
-I am an **abstract** class.
-
 All the elements in a GeometryCollection shall be in the same Spatial Reference System. 
 This is also the Spatial Reference System for the GeometryCollection.
 
@@ -22,9 +20,17 @@ Class {
 	#category : #'OGC-Core'
 }
 
-{ #category : #testing }
-OGCGeometryCollection class >> isAbstract [
-	^ self = OGCGeometryCollection 
+{ #category : #accessing }
+OGCGeometryCollection class >> geometries: aCollectionOfGeometries [
+	| classToGenerate |
+	classToGenerate := self.
+	(aCollectionOfGeometries allSatisfy: [ :each | each class geometryType = 'LineString' ]) 
+		ifTrue: [ classToGenerate := OGCMultiLineString ].
+	(aCollectionOfGeometries allSatisfy: [ :each | each class geometryType = 'Point' ]) 
+		ifTrue: [ classToGenerate := OGCMultiPoint  ].
+	(aCollectionOfGeometries allSatisfy: [ :each | each class geometryType = 'Polygon' ]) 
+		ifTrue: [ classToGenerate := OGCMultiPolygon ].
+	^ classToGenerate new geometries: aCollectionOfGeometries 
 ]
 
 { #category : #testing }

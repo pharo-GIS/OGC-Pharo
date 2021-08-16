@@ -28,26 +28,11 @@ OGCLineString >> getLines [
 	^ resultLines
 ]
 
-{ #category : #enumerating }
-OGCLineString >> intersection: anotherGeometry [
-	| allIntersections |
-	allIntersections := self lines collect: [ :aLine | aLine intersection: anotherGeometry ].
-	^ allIntersections 
-]
-
 { #category : #accessing }
 OGCLineString >> length [
 	| lengthLines |
 	lengthLines := (self lines collect: [ :aLine | aLine length ]).
 	^ lengthLines ifNotEmpty: [ lengthLines sum ] ifEmpty: [ 0 ]
-]
-
-{ #category : #initialization }
-OGCLineString >> length: aCollectionOfPoints withValue: aLength andStartedPoint: aPoint [
-	^ aCollectionOfPoints 
-			ifEmpty: [ aLength ]
-			ifNotEmpty: 
-			[ self length: aCollectionOfPoints allButFirst withValue: aLength + (aPoint distance: aCollectionOfPoints first) andStartedPoint: aCollectionOfPoints first ]
 ]
 
 { #category : #accessing }
