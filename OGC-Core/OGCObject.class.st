@@ -20,6 +20,11 @@ OGCObject class >> isAbstract [
 ]
 
 { #category : #style }
+OGCObject >> applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withColor: aColorName [
+	self subclassResponsibility 
+]
+
+{ #category : #style }
 OGCObject >> applyStyle: aStyleDictionary [
 	" apply the given style (as a dictionary) to every elements"
 	self subclassResponsibility 

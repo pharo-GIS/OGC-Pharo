@@ -20,23 +20,23 @@ OGCFeatureCollection class >> features: aCollectionOfFeatures [
 	^ self new features: aCollectionOfFeatures
 ]
 
-{ #category : #style }
-OGCFeatureCollection >> applyStyle: aStyleDictionary [
-	self features do: [ :aFeature | aFeature applyStyle: aStyleDictionary ]
+{ #category : #adding }
+OGCFeatureCollection >> addFeaturePropertyKey: aKey withData: aDictionary withIdentityKey: anIdentityKey [
+	" add a property to the properties of features, 
+	based on a dictionary which uses a join key to identify concerned feature = identity key"
+	aDictionary keysAndValuesDo: [ :key :value | 
+		| index |
+		index := self detectFeatureIndexWithPropertyKey: anIdentityKey andValue: key.
+		(self features at: index) properties add: (Association key: aKey value: value)  ]
 ]
 
 { #category : #style }
-OGCFeatureCollection >> applyStyle: aStyleDictionary ifFeature: aBlock [
-	self features do: [ :eachFeature | eachFeature applyStyle: aStyleDictionary ifFeature: aBlock ]
+OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withColor: aColorName [
+	^ self applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: [ :a :b | a = b ] withColor: aColorName
 ]
 
 { #category : #style }
-OGCFeatureCollection >> applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withColor: aColorName [
-	^ self applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: [ :a :b | a = b ] withColor: aColorName
-]
-
-{ #category : #style }
-OGCFeatureCollection >> applyStyleOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: aBlock withColor: aColorName [
+OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: aBlock withColor: aColorName [
 	| indexKey indexAssociateKey dataDictionary maxValue minValue |
 	" 1. organize data "
 	indexKey := aCSVArray first indexOf: aDataKey.
@@ -63,9 +63,24 @@ OGCFeatureCollection >> applyStyleOn: aDataKey withFeatureData: aCSVArray withAs
 		 ].
 ]
 
+{ #category : #style }
+OGCFeatureCollection >> applyStyle: aStyleDictionary [
+	self features do: [ :aFeature | aFeature applyStyle: aStyleDictionary ]
+]
+
+{ #category : #style }
+OGCFeatureCollection >> applyStyle: aStyleDictionary ifFeature: aBlock [
+	self features do: [ :eachFeature | eachFeature applyStyle: aStyleDictionary ifFeature: aBlock ]
+]
+
 { #category : #converting }
 OGCFeatureCollection >> asFeaturesCollection [ 
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+OGCFeatureCollection >> detectFeatureIndexWithPropertyKey: aKey andValue: aValue [
+	^ self features detectIndex: [ :aFeature | aFeature properties includesAssociation: (Association key: aKey value: aValue) ]
 ]
 
 { #category : #accessing }
