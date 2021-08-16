@@ -199,9 +199,9 @@ OGCGeometry >> is3D [
 	self subclassResponsibility 
 ]
 
-{ #category : #basic }
-OGCGeometry >> isEmpty [ 
-	^ false
+{ #category : #testing }
+OGCGeometry >> isEmpty [
+	self subclassResponsibility 
 ]
 
 { #category : #basic }

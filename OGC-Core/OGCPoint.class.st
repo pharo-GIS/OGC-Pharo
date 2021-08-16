@@ -111,6 +111,11 @@ OGCPoint >> is3D [
 	^ z notNil
 ]
 
+{ #category : #testing }
+OGCPoint >> isEmpty [
+	^ (x isNil) & (y isNil) & (z isNil) & (m isNil)
+]
+
 { #category : #basic }
 OGCPoint >> isMeasured [
 	^ m isNotNil

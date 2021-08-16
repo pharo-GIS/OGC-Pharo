@@ -34,6 +34,11 @@ OGCGeometryCollection class >> geometries: aCollectionOfGeometries [
 ]
 
 { #category : #testing }
+OGCGeometryCollection class >> isAbstract [ 
+	^ self == OGCGeometryCollection 
+]
+
+{ #category : #testing }
 OGCGeometryCollection >> = anotherMultiPoint [
 	^ self geometries asSet = anotherMultiPoint geometries asSet
 ]
