@@ -1,5 +1,5 @@
 "
-6.1.9 MultiLineString
+###6.1.9 MultiLineString
 
 A MultiLineString is a MultiCurve whose elements are LineStrings. 
 "

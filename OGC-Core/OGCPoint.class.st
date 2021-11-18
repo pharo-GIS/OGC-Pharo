@@ -1,7 +1,7 @@
 "
-6.1.4 Point
+###6.1.4 Point
 
-6.1.4.1 Description
+###6.1.4.1 Description
 
 A Point is a 0-dimensional geometric object and represents a single location in coordinate space. A Point has an
 x-coordinate value, a y-coordinate value. If called for by the associated Spatial Reference System, it may also
@@ -110,6 +110,11 @@ OGCPoint >> hash [
 { #category : #testing }
 OGCPoint >> is3D [ 
 	^ z notNil
+]
+
+{ #category : #testing }
+OGCPoint >> isEmpty [
+	^ (x isNil) & (y isNil) & (z isNil) & (m isNil)
 ]
 
 { #category : #basic }
