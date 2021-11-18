@@ -60,6 +60,7 @@ OGCPoint class >> xym: anArray [
 
 { #category : #comparing }
 OGCPoint >> = anOGCPoint [
+	(anOGCPoint isKindOf: OGCPoint) ifFalse: [ ^ false ].
 	^ (x = anOGCPoint x) & (y = anOGCPoint y) & (z = anOGCPoint z)
 ]
 
