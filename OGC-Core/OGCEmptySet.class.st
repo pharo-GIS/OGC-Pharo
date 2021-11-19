@@ -1,5 +1,5 @@
 "
-I am a geometric object with isEmpty = true.
+I am the empty OGCGeometry object, so `isEmpty = true`
 "
 Class {
 	#name : #OGCEmptySet,

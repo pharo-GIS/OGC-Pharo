@@ -1,10 +1,11 @@
 "
-6.1.7 LineString, Line, LinearRing
+###6.1.7 LineString, Line, LinearRing
 
-6.1.7.1 Description 
+###6.1.7.1 Description 
 
-A LinearRing is a LineString that is both closed and simple. The Curve in Figure 2, item (c), is a closed LineString
-that is a LinearRing. The Curve in Figure 2, item (d) is a closed LineString that is not a LinearRing. 
+A LinearRing is **a LineString** that is:
+- **closed**: my start point is equal to my end point
+- **simple**: no intersection
 "
 Class {
 	#name : #OGCLinearRing,

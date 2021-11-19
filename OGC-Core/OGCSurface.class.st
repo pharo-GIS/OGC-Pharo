@@ -1,7 +1,7 @@
 "
-6.1.10 Surface
+###6.1.10 Surface
 
-6.1.10.1 Description
+###6.1.10.1 Description
 
 A Surface is a 2-dimensional geometric object.
 A simple Surface may consists of a single “patch” that is associated with one “exterior boundary” and 0 or more
@@ -45,6 +45,16 @@ be on this Surface."
 OGCSurface >> dimension [ 
 	"The inherent dimension of this geometric object, which must be less than or equal to the coordinate dimension."
 	^ 2
+]
+
+{ #category : #accessing }
+OGCSurface >> exteriorRing [
+	^ exteriorRing
+]
+
+{ #category : #accessing }
+OGCSurface >> exteriorRing: anObject [
+	exteriorRing := anObject
 ]
 
 { #category : #basic }

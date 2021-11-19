@@ -1,9 +1,11 @@
 "
-6.1.7 LineString, Line, LinearRing
+###6.1.7 LineString, Line, LinearRing
 
-6.1.7.1 Description 
+###6.1.7.1 Description 
 
-A Line is a LineString with exactly 2 Points. 
+A Line is a LineString with exactly 2 Points = a segment.
+
+Instanciation: `OGCLine class>>#withPoints:`
 "
 Class {
 	#name : #OGCLine,
@@ -26,13 +28,6 @@ OGCLine class >> withPoints: aCollectionOfPoints [
 	(aCollectionOfPoints size = 2) 
 		ifTrue: [ ^ self new points: aCollectionOfPoints ]
 		ifFalse: [ self errorIncorrectNumberOfPoints: aCollectionOfPoints size]
-]
-
-{ #category : #'methods analysis' }
-OGCLine >> intersection: anotherGeometry [
-	"Returns a geometric object that represents the
-Point set intersection of this geometric object with anotherGeometry."
-	^ spatialReferenceSystem intersection: anotherGeometry withLine: self
 ]
 
 { #category : #accessing }
