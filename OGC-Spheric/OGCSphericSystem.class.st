@@ -35,5 +35,5 @@ OGCSphericSystem class >> distanceFromPoint: pointA toPoint: pointB [
 	sinValue := (latA sin ) * (latB sin).
 	cosValue := (latA cos ) * (latB cos) * ((lonA - lonB) cos).
 	
-	^ ray * ((sinValue + cosValue) arcCos)
+	^ ray * (((sinValue + cosValue) max: -1.0) min: 1.0) arcCos
 ]
