@@ -6,21 +6,22 @@ I represent the GeoJSON element called FeatureCollection which gathers:
 Instanciation: `OGCFeatureCollection class>>#features:`
 "
 Class {
-	#name : #OGCFeatureCollection,
-	#superclass : #OGCObject,
+	#name : 'OGCFeatureCollection',
+	#superclass : 'OGCObject',
 	#instVars : [
 		'features',
 		'properties'
 	],
-	#category : #'OGC-Core'
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCFeatureCollection class >> features: aCollectionOfFeatures [
 	^ self new features: aCollectionOfFeatures
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 OGCFeatureCollection >> addFeaturePropertyKey: aKey withData: aDictionary withIdentityKey: anIdentityKey [
 	" add a property to the properties of features, 
 	based on a dictionary which uses a join key to identify concerned feature = identity key"
@@ -30,7 +31,7 @@ OGCFeatureCollection >> addFeaturePropertyKey: aKey withData: aDictionary withId
 		(self features at: index) properties add: (Association key: aKey value: value)  ]
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withColor: aColorName [
 	| maxValue minValue |
 	maxValue := (self features collect: [ :aFeature | (aFeature properties at: aDataKey) asNumber ]) max.
@@ -49,12 +50,12 @@ OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withColor: aColorN
 		].
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withColor: aColorName [
 	^ self applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: [ :a :b | a = b ] withColor: aColorName
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: aCSVArray withAssociateKey: aDataAssociateKey withEqualityCondition: aBlock withColor: aColorName [
 	| indexKey indexAssociateKey dataDictionary |
 	" 1. organize data "
@@ -72,49 +73,49 @@ OGCFeatureCollection >> applyContinuousColorationOn: aDataKey withFeatureData: a
 	self applyContinuousColorationOn: aDataKey withColor: aColorName
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 OGCFeatureCollection >> applyStyle: aStyleDictionary [
 	self features do: [ :aFeature | aFeature applyStyle: aStyleDictionary ]
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 OGCFeatureCollection >> applyStyle: aStyleDictionary ifFeature: aBlock [
 	self features do: [ :eachFeature | eachFeature applyStyle: aStyleDictionary ifFeature: aBlock ]
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 OGCFeatureCollection >> asFeaturesCollection [ 
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCFeatureCollection >> detectFeatureIndexWithPropertyKey: aKey andValue: aValue [
 	^ self features detectIndex: [ :aFeature | aFeature properties includesAssociation: (Association key: aKey value: aValue) ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCFeatureCollection >> features [
 	^ features
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCFeatureCollection >> features: aCollection [ 
 	features := aCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCFeatureCollection >> initialize [
 	super initialize.
 	features := OrderedCollection new.
 	properties := Dictionary new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCFeatureCollection >> properties [
 	^ properties
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCFeatureCollection >> rectangularEnvelope [
 	" Returns the minimal rectangle which contains all features "
 	| allRectangularEnvelopes |

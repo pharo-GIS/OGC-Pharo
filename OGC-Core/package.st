@@ -1,1 +1,1 @@
-Package { #name : #'OGC-Core' }
+Package { #name : 'OGC-Core' }

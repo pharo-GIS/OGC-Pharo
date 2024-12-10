@@ -4,17 +4,18 @@
 A MultiLineString is a MultiCurve whose elements are LineStrings. 
 "
 Class {
-	#name : #OGCMultiLineString,
-	#superclass : #OGCMultiCurve,
-	#category : #'OGC-Core'
+	#name : 'OGCMultiLineString',
+	#superclass : 'OGCMultiCurve',
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCMultiLineString class >> geometryType [
 	^ 'MultiLineString'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCMultiLineString >> coordinates: aCollection [ 
 	geometries := aCollection collect: [ :each |
 		OGCLineString new coordinates: each ]

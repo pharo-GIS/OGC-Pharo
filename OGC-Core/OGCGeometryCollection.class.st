@@ -12,15 +12,16 @@ GeometryCollection places no other constraints on its elements.
 Subclasses of GeometryCollection may restrict membership based on dimension and may also place other constraints on the degree of spatial overlap between elements. 
 "
 Class {
-	#name : #OGCGeometryCollection,
-	#superclass : #OGCGeometry,
+	#name : 'OGCGeometryCollection',
+	#superclass : 'OGCGeometry',
 	#instVars : [
 		'geometries'
 	],
-	#category : #'OGC-Core'
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCGeometryCollection class >> geometries: aCollectionOfGeometries [
 	| classToGenerate |
 	classToGenerate := self.
@@ -33,50 +34,50 @@ OGCGeometryCollection class >> geometries: aCollectionOfGeometries [
 	^ classToGenerate new geometries: aCollectionOfGeometries 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCGeometryCollection class >> isAbstract [ 
 	^ self == OGCGeometryCollection 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCGeometryCollection >> = anotherMultiPoint [
 	^ self geometries asSet = anotherMultiPoint geometries asSet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCGeometryCollection >> coordinates [
 	^ geometries collect: #coordinates
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCGeometryCollection >> dimension [
 	^ geometries sorted: [ :e1 :e2 | e1 dimension > e2 dimension ] first
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCGeometryCollection >> geometries [
 	^ geometries
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCGeometryCollection >> geometries: anObject [
 	geometries := anObject.
 	geometries do: [ :each | each style: self style ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCGeometryCollection >> geometryN: index [
 	"Returns the Nth geometry in this GeometryCollection"	
 	^ geometries at: index
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCGeometryCollection >> numGeometries [
 	"cReturns the number of geometries in this GeometryCollection"
 	^ geometries size
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCGeometryCollection >> rectangularEnvelope [
 	" Returns the minimal rectangle which contains all features "
 	| allRectangularEnvelopes |

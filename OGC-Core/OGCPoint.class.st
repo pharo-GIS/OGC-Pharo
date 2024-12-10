@@ -9,8 +9,8 @@ have coordinate values for z and m.
 The boundary of a Point is the empty set. 
 "
 Class {
-	#name : #OGCPoint,
-	#superclass : #OGCGeometry,
+	#name : 'OGCPoint',
+	#superclass : 'OGCGeometry',
 	#instVars : [
 		'x',
 		'y',
@@ -18,29 +18,30 @@ Class {
 		'm',
 		'icon'
 	],
-	#category : #'OGC-Core'
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint class >> geometryType [
 	^ 'Point'
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OGCPoint class >> latitude: latitude longitude: longitude [ 
 	^ self new
 		x: longitude;
 		y: latitude 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OGCPoint class >> x: xNumber y: yNumber [
 	^ self new 
 		x: xNumber;
 		y: yNumber 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OGCPoint class >> x: xNumber y: yNumber m:mNumber [
 	^ self new 
 		x: xNumber;
@@ -48,28 +49,28 @@ OGCPoint class >> x: xNumber y: yNumber m:mNumber [
 		m: mNumber
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OGCPoint class >> xy: anArray [
 	^ self x: anArray first y: anArray second
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 OGCPoint class >> xym: anArray [
 	^ self x: anArray first y: anArray second m: anArray last
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 OGCPoint >> = anOGCPoint [
 	(self species == anOGCPoint species) ifFalse: [ ^ false ].
 	^ (x = anOGCPoint x) & (y = anOGCPoint y) & (z = anOGCPoint z)
 ]
 
-{ #category : #conversion }
+{ #category : 'conversion' }
 OGCPoint >> asPoint [
 	^ x @ y
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCPoint >> boundary [
 	"Geometry — Returns the closure of the combinatorial boundary of this geometric object
 (Reference [1], section 3.12.2). Because the result of this function is a closure, and hence topologically
@@ -78,12 +79,12 @@ section 3.12.2). The return type is integer, but is interpreted as Boolean, TRUE
 	^ OGCEmptySet new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> coordinates [
-	^ Array braceWith: self x with: self y
+	^  { self x . self y }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> coordinates: aCollection [
 	"a point should only have two coordinates being numbers"
 	| coordinates |
@@ -92,47 +93,47 @@ OGCPoint >> coordinates: aCollection [
 	self y: coordinates second.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> dimension [
 	^ 0
 ]
 
-{ #category : #'methods analysis' }
+{ #category : 'methods analysis' }
 OGCPoint >> distance: anotherGeometry [
 	^ spatialReferenceSystem distance: self toPoint: anotherGeometry
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 OGCPoint >> hash [ 
 	^ (x hash bitXor: y hash) bitXor: z hash
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCPoint >> is3D [ 
 	^ z notNil
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCPoint >> isEmpty [
 	^ (x isNil) & (y isNil) & (z isNil) & (m isNil)
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCPoint >> isMeasured [
 	^ m isNotNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> latitude [
 	^ self y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> latitude: aNumberOrString [
 	self y: aNumberOrString asNumber
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCPoint >> locateBetween: mStart and: mEnd [
 	"Returns a derived geometry collection value
 that matches the specified range of m coordinate values inclusively. See Subclause 6.1.2.6 “Measures on
@@ -142,27 +143,27 @@ Geometry” for more details."
 			ifFalse: [ OGCEmptySet new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> longitude [
 	^ self x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> longitude: aNumberOrString [
 	self x: aNumberOrString asNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> m [
 	^ m
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> m: aFloat [
 	m := aFloat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> max: anOGCPoint [ 
 
 	^ OGCPoint 
@@ -170,7 +171,7 @@ OGCPoint >> max: anOGCPoint [
 		y: (y max: anOGCPoint y)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> min: anOGCPoint [ 
 
 	^ OGCPoint 
@@ -178,19 +179,19 @@ OGCPoint >> min: anOGCPoint [
 		y: (y min: anOGCPoint y)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 OGCPoint >> printOn: aStream [ 
 	aStream << x asString << ',' << y asString.
 	z ifNotNil: [ 
 		aStream << ',' << z asString ]
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 OGCPoint >> rectangularEnvelope [
 	^ x@y corner: x@y
 ]
 
-{ #category : #'truncation and round off' }
+{ #category : 'truncation and round off' }
 OGCPoint >> roundTo: grid [
 	
 	| gridPoint |
@@ -200,37 +201,37 @@ OGCPoint >> roundTo: grid [
 		y: (y roundTo: gridPoint y)
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 OGCPoint >> to: end1 intersects: start2 to: end2 [ 
 	^ self asPoint to: end1 intersects: start2 to: end2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> x [
 	^ x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> x: aFloat [
 	x:= aFloat 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> y [
 	^ y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> y: aFloat [
 	y:= aFloat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> z [
 	^ z
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPoint >> z: aFloat [
 	z := aFloat
 ]

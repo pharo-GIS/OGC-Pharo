@@ -18,17 +18,18 @@ The reader is referred to works by Worboys et al.([13], [14]) and Clementini et 
 specification of MultiPolygons. 
 "
 Class {
-	#name : #OGCMultiPolygon,
-	#superclass : #OGCMultiSurface,
-	#category : #'OGC-Core'
+	#name : 'OGCMultiPolygon',
+	#superclass : 'OGCMultiSurface',
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCMultiPolygon class >> geometryType [
 	^ 'MultiPolygon'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCMultiPolygon >> coordinates: aCollection [ 
 	self geometries: (aCollection collect: [ :each |
 		OGCPolygon new coordinates: each ])

@@ -10,60 +10,61 @@ simple affine rotation matrix that rotates the patch onto the plane z = 0. If th
 onto the same plane is an isomorphism, and can be represented as a linear transformation, i.e. an affine. 
 "
 Class {
-	#name : #OGCSurface,
-	#superclass : #OGCGeometry,
+	#name : 'OGCSurface',
+	#superclass : 'OGCGeometry',
 	#instVars : [
 		'exteriorRing'
 	],
-	#category : #'OGC-Core'
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCSurface class >> isAbstract [
 	^ self == OGCSurface 
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCSurface >> area [
 	"The area of this Surface, as measured in the spatial reference system of this Surface."
 	self subclassResponsibility 
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCSurface >> boundary [
 	self subclassResponsibility 
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCSurface >> centroid [
 	"The mathematical centroid for this Surface as a Point. The result is not guaranteed to
 be on this Surface."
 	self subclassResponsibility 
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCSurface >> dimension [ 
 	"The inherent dimension of this geometric object, which must be less than or equal to the coordinate dimension."
 	^ 2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCSurface >> exteriorRing [
 	^ exteriorRing
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCSurface >> exteriorRing: anObject [
 	exteriorRing := anObject
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCSurface >> pointOnSurface [
 	"A Point guaranteed to be on this Surface"
 	self subclassResponsibility 
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCSurface >> rectangularEnvelope [
 	" Returns [ minX, maxX, minY, maxY ] to define minimal rectangle which contains all features "
 	^ exteriorRing rectangularEnvelope

@@ -4,22 +4,23 @@ A reference system contains:
 - one measure reference system if needed
 "
 Class {
-	#name : #OGCReferenceSystem,
-	#superclass : #Object,
-	#category : #'OGC-Core'
+	#name : 'OGCReferenceSystem',
+	#superclass : 'Object',
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCReferenceSystem class >> axisName [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCReferenceSystem class >> dimension [
 	self subclassResponsibility 
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCReferenceSystem class >> isAbstract [
 	^ true
 ]

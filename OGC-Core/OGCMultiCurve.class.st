@@ -15,33 +15,34 @@ A MultiCurve is closed if all of its elements are closed. The boundary of a clos
 A MultiCurve is defined as topologically closed. 
 "
 Class {
-	#name : #OGCMultiCurve,
-	#superclass : #OGCGeometryCollection,
-	#category : #'OGC-Core'
+	#name : 'OGCMultiCurve',
+	#superclass : 'OGCGeometryCollection',
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCMultiCurve class >> geometryType [
 	^ 'MultiCurve'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCMultiCurve class >> isAbstract [
 	^ self == OGCMultiCurve
 ]
 
-{ #category : #basic }
+{ #category : 'basic' }
 OGCMultiCurve >> dimension [
 	^ 1
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCMultiCurve >> isClosed [
 	"A MultiCurve is closed if all of its elements are closed."
 	^ self geometries allSatisfy: [ :each | each isClosed ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCMultiCurve >> length [
 	^ self geometries sum: [ :each | each length ]
 ]

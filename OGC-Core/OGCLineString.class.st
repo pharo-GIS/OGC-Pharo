@@ -7,20 +7,21 @@ A LineString is a Curve with linear interpolation between Points.
 Each consecutive pair of Points defines a Line segment.
 "
 Class {
-	#name : #OGCLineString,
-	#superclass : #OGCCurve,
+	#name : 'OGCLineString',
+	#superclass : 'OGCCurve',
 	#instVars : [
 		'lines'
 	],
-	#category : #'OGC-Core'
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCLineString class >> geometryType [
 	^ 'LineString'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCLineString >> getLines [
 	| resultLines |
 	resultLines := OrderedCollection new.
@@ -28,25 +29,25 @@ OGCLineString >> getLines [
 	^ resultLines
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCLineString >> length [
 	| lengthLines |
 	lengthLines := (self lines collect: [ :aLine | aLine length ]).
 	^ lengthLines ifNotEmpty: [ lengthLines sum ] ifEmpty: [ 0 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCLineString >> lines [
 	^ lines ifNil: [ lines := self getLines ]
 ]
 
-{ #category : #access }
+{ #category : 'access' }
 OGCLineString >> numPoints [
 	"The number of Points in this LineString"
 	^ points size
 ]
 
-{ #category : #access }
+{ #category : 'access' }
 OGCLineString >> pointN: anInteger [
 	"Returns the specified Point N in this LineString"
 	^ points at: anInteger 

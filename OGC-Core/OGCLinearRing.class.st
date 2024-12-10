@@ -8,22 +8,23 @@ A LinearRing is **a LineString** that is:
 - **simple**: no intersection
 "
 Class {
-	#name : #OGCLinearRing,
-	#superclass : #OGCLineString,
-	#category : #'OGC-Core'
+	#name : 'OGCLinearRing',
+	#superclass : 'OGCLineString',
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCLinearRing class >> geometryType [
 	^ 'LinearRing'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCLinearRing class >> notALinearRing: isClosed and: isSimple [
 	OGCNotALinearRingError signal: isClosed and: isSimple
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCLinearRing class >> withPoints: aCollectionOfPoints [
 	| lineString |
 	lineString := self superclass withPoints: aCollectionOfPoints.

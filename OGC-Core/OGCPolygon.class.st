@@ -16,20 +16,21 @@ c) No two Rings in the boundary cross and the Rings in the boundary of a Polygon
 only as a tangent, e.g. 
 "
 Class {
-	#name : #OGCPolygon,
-	#superclass : #OGCSurface,
+	#name : 'OGCPolygon',
+	#superclass : 'OGCSurface',
 	#instVars : [
 		'interiorRings'
 	],
-	#category : #'OGC-Core'
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon class >> geometryType [
 	^ 'Polygon'
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCPolygon >> = anotherPolygon [
 	^ self class = anotherPolygon class and: 
 		[ self interiorRings = anotherPolygon interiorRings
@@ -38,19 +39,19 @@ OGCPolygon >> = anotherPolygon [
 			]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon >> addInteriorRing: anOGCLinearRing [
 	anOGCLinearRing isClosed ifFalse: [ 
 		Error signal: 'linear ring is not closed' ].
 	self interiorRings add: anOGCLinearRing 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon >> coordinates [
 	^ exteriorRing points collect: #coordinates
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon >> coordinates: aCollection [ 
 	(aCollection anySatisfy: [ :each | each class = Array ])
 	ifTrue: [
@@ -66,39 +67,39 @@ OGCPolygon >> coordinates: aCollection [
 		 ]
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 OGCPolygon >> defaultFillColor [
 	^ 'white'
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 OGCPolygon >> defaultFillOpacity [
 	^ '0.5'
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 OGCPolygon >> hash [ 
 	^ self interiorRings hash bitXor: self exteriorRing hash
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon >> interiorRingN: anInteger [
 	"Returns the Nth interior ring for this Polygon as a LineString."
 	^ interiorRings at: anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon >> interiorRings [
 	^ interiorRings ifNil: [ 
 		interiorRings := OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon >> interiorRings: anObject [
 	interiorRings := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCPolygon >> numInteriorRing [
 	"Returns the number of interior rings in this Polygon"
 	^ interiorRings size

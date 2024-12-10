@@ -14,12 +14,13 @@ MultiSurface is MultiPolygon corresponding to a collection of Polygons only. Oth
 MultiSurface.
 "
 Class {
-	#name : #OGCMultiSurface,
-	#superclass : #OGCGeometryCollection,
-	#category : #'OGC-Core'
+	#name : 'OGCMultiSurface',
+	#superclass : 'OGCGeometryCollection',
+	#category : 'OGC-Core',
+	#package : 'OGC-Core'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCMultiSurface class >> isAbstract [
 	^ self = OGCMultiSurface 
 ]
