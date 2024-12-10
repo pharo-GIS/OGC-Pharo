@@ -1,20 +1,21 @@
 Class {
-	#name : #OGCInformationWindowPresenter,
-	#superclass : #SpWindowPresenter,
+	#name : 'OGCInformationWindowPresenter',
+	#superclass : 'SpWindowPresenter',
 	#classInstVars : [
 		'presenter'
 	],
-	#category : #'OGC-Viewer'
+	#category : 'OGC-Viewer',
+	#package : 'OGC-Viewer'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCInformationWindowPresenter class >> getNewPresenter [
 	^ self new 
 		presenter: self getNewSubPresenter ;
 		title: 'Information'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCInformationWindowPresenter class >> getNewSubPresenter [
 	| newPresenter |
 
@@ -31,38 +32,38 @@ OGCInformationWindowPresenter class >> getNewSubPresenter [
 	^ newPresenter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCInformationWindowPresenter class >> inspectButton [
 	^ self presenter presenter layout children third children first
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCInformationWindowPresenter class >> isClosed [ 
 	^ self isOpened not
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCInformationWindowPresenter class >> isOpened [
 	^ self presenter isOpen
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 OGCInformationWindowPresenter class >> open [
 	presenter := self getNewPresenter .
 	self presenter open.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCInformationWindowPresenter class >> presenter [
 	^ presenter ifNil: [ ^ presenter := self getNewPresenter ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCInformationWindowPresenter class >> textPresenter [
 	^ self presenter presenter layout children second
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCInformationWindowPresenter class >> title [
 	^ 'Informations'
 ]

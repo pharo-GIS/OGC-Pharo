@@ -1,31 +1,32 @@
 Class {
-	#name : #OGCViewerMorph,
-	#superclass : #StandardWindow,
+	#name : 'OGCViewerMorph',
+	#superclass : 'StandardWindow',
 	#instVars : [
 		'surface',
 		'map',
 		'repere',
 		'displayParameters'
 	],
-	#category : #'OGC-Viewer'
+	#category : 'OGC-Viewer',
+	#package : 'OGC-Viewer'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCViewerMorph class >> displayObject: aOGCObject [
 	^ self new displayFeaturesCollection: aOGCObject asFeaturesCollection 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCViewerMorph class >> displayObject: aOGCObject withZoomLevel: aZoom [
 	^ self new displayFeaturesCollection: aOGCObject asFeaturesCollection withZoomLevel: aZoom
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCViewerMorph class >> withMapTiles [
 	^ self withMapTiles: 3@2
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCViewerMorph class >> withMapTiles: aPoint [
 	"(number of tiles in width)@(number of tiles in height) wanted at visualisation"
 	| aViewer |
@@ -35,12 +36,12 @@ OGCViewerMorph class >> withMapTiles: aPoint [
 	^ aViewer
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OGCViewerMorph >> activateMapTiles [
 	displayParameters at: 'displayMapTiles' put: true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OGCViewerMorph >> defaultDisplayParameters [
 	| defaultDictionary |
 	defaultDictionary := Dictionary new.
@@ -50,17 +51,17 @@ OGCViewerMorph >> defaultDisplayParameters [
 	^ defaultDictionary
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OGCViewerMorph >> defaultExtent [
 	^ 400@400
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection [
 	^ self displayFeaturesCollection: aFeaturesCollection withZoomLevel: (aFeaturesCollection bestZoomWithZoomLimit: 19 widthTileLimit: self widthTileLimit heightTileLimit: self heightTileLimit )
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: aZoomLevel [
 	| zoom rectangularTileEnvelope |
 	zoom := aZoomLevel min: 19.
@@ -83,27 +84,27 @@ OGCViewerMorph >> displayFeaturesCollection: aFeaturesCollection withZoomLevel: 
 	 ^ map
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCViewerMorph >> displayObject: aOGCObject [
 	^ self displayFeaturesCollection: aOGCObject asFeaturesCollection 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCViewerMorph >> displayObject: aOGCObject withZoomLevel: aZoomLevel [
 	^ self displayFeaturesCollection: aOGCObject asFeaturesCollection withZoomLevel: aZoomLevel
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OGCViewerMorph >> displayParameters [
 	^ displayParameters 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OGCViewerMorph >> displayParameters: aDictionary [
 	displayParameters  := aDictionary 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OGCViewerMorph >> getMapTilesWithZoom: zoom xInterval: aXInterval yInterval: aYInterval [
 	| mapTiles coordNext|
 	mapTiles := ImageMorph new.
@@ -121,14 +122,14 @@ OGCViewerMorph >> getMapTilesWithZoom: zoom xInterval: aXInterval yInterval: aYI
 	^ mapTiles
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 OGCViewerMorph >> getTilePng: aOGCPoint withZoomLevel: aZoomLevel [
 	| zoom |
 	zoom := aZoomLevel min: self zoomLimit.
 	^ self getTilePngWithZoom: aZoomLevel x: (aOGCPoint xTileWithZoom: zoom) y: (aOGCPoint yTileWithZoom: zoom)
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 OGCViewerMorph >> getTilePngWithZoom: aZoomLevel x: aXvalue y: aYvalue [
 	| url morph |
 	morph := ImageMorph new.
@@ -141,12 +142,12 @@ OGCViewerMorph >> getTilePngWithZoom: aZoomLevel x: aXvalue y: aYvalue [
 	^ morph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCViewerMorph >> heightTileLimit [
 		^ self displayParameters at: 'heightTileLimit'
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OGCViewerMorph >> initialize [
 	super initialize.
 	surface := AthensCairoSurface extent: self defaultExtent.
@@ -154,24 +155,24 @@ OGCViewerMorph >> initialize [
 	self displayParameters: self defaultDisplayParameters
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 OGCViewerMorph >> run [
 
 	self open.
 	self extent: self defaultExtent.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCViewerMorph >> tileSize [
 	^ 256
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCViewerMorph >> widthTileLimit [
 	^ self displayParameters at: 'widthTileLimit'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OGCViewerMorph >> zoomLimit [
 	^ 19
 ]

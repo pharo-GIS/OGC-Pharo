@@ -1,1 +1,1 @@
-Package { #name : #'OGC-Viewer' }
+Package { #name : 'OGC-Viewer' }

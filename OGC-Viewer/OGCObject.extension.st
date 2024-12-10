@@ -1,11 +1,11 @@
-Extension { #name : #OGCObject }
+Extension { #name : 'OGCObject' }
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCObject >> bestZoom [
 	^ self bestZoomWithZoomLimit: 19 widthTileLimit: 2 heightTileLimit: 1
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCObject >> bestZoomWithZoomLimit: zoomLimit widthTileLimit: widthTileLimit heightTileLimit: heightTileLimit [
 	" return the best zoom in [ 0, zoomLimit ] for the display of objects to fit in defined width and height tile limits"
 	0 to: zoomLimit do: [ :zoom_i |
@@ -17,18 +17,18 @@ OGCObject >> bestZoomWithZoomLimit: zoomLimit widthTileLimit: widthTileLimit hei
 	^ zoomLimit
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCObject >> displayWithZoom: aZoom [
 	^ self displayWithZoom: aZoom offsetX: 0 offsetY: 0
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCObject >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue [
 	" return the morph of object with given zoom, pixel offset in X and pixel offset in Y "
 	self subclassResponsibility
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCObject >> inspectionMap [
 	<inspectorPresentationOrder: 90 title: 'Map'>
 	" open a tab at inspection to display objects "
@@ -37,7 +37,7 @@ OGCObject >> inspectionMap [
         yourself 
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCObject >> inspectionMapWithTiles [
 	<inspectorPresentationOrder: 91 title: 'Map with Tiles'>
 	" open a tab at inspection to display objects with a map background "
@@ -46,7 +46,7 @@ OGCObject >> inspectionMapWithTiles [
         yourself 
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCObject >> rectangularTileEnvelopeWithZoom: zoom [
 	" return the minimal rectangle whose origin and corner are tile coordinates, which contains all geometries displayed with given zoom level"
 	| rectangularEnvelope corner00 corner11 minX maxX minY maxY |

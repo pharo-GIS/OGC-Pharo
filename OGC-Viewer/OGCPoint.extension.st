@@ -1,6 +1,6 @@
-Extension { #name : #OGCPoint }
+Extension { #name : 'OGCPoint' }
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	" return morph which represents the point, with good positions taking map offsets in account"
 	| icon_i iconX iconY|
@@ -11,7 +11,7 @@ OGCPoint >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	^ icon_i
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> icon [
 	^ (icon
 		ifNil: [ icon := (ImageMorph
@@ -21,7 +21,7 @@ OGCPoint >> icon [
 		copy
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> iconContents [
 	^ 'iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABHNCSVQICAgIfAhkiAAAAAlw
 SFlzAAAOkwAADpMBcVr9xwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoA
@@ -241,87 +241,87 @@ kGYADArjVxEA48Mg/0YgAIB0I2DLMO81ATAvbOnfBgQAkH4E7BvaYvi77evfBAQAUJwIGBXj
 P8q/BRTT/we2xT+S89eg4AAAAABJRU5ErkJggg=='
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> iconSize [
 	^ 20
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> pixelCoordinates [
 	^ Array braceWith: (self xPixelWithZoom: 0) with: (self yPixelWithZoom: 0)
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> pixelCoordinatesWithZoom: aZoomLevel [
-	^ Array braceWith: (self xPixelWithZoom: aZoomLevel ) with: (self yPixelWithZoom: aZoomLevel )
+	^ { self xPixelWithZoom: aZoomLevel . self yPixelWithZoom: aZoomLevel }
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> tileCoordinatesWithZoom [
 	^ Array braceWith: (self xTileWithZoom: 0 ) with: (self yTileWithZoom: 0 )
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> tileCoordinatesWithZoom: aZoomLevel [
-	^ Array braceWith: (self xTileWithZoom: aZoomLevel ) with: (self yTileWithZoom: aZoomLevel )
+	^ { self xTileWithZoom: aZoomLevel . self yTileWithZoom: aZoomLevel }
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> tileSize [
 	^ 256
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> worldCoordinates [
-	^ Array braceWith: self xWorld with: self yWorld
+	^ { self xWorld . self yWorld }
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> xPixelInTileWithZoom: aZoomLevel [
 	^ (self xPixelWithZoom: aZoomLevel) - ((self tileSize) * (self xTileWithZoom: aZoomLevel))
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> xPixelWithOffset: offsetX withZoom: zoom [
 	^ (((self xTileWithZoom: zoom) - offsetX ) * self tileSize) + (self xPixelInTileWithZoom: zoom)
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> xPixelWithZoom: aZoomLevel [
 	^ (self xWorld * (2 ** aZoomLevel)) asInteger
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> xTileWithZoom: aZoomLevel [
 	^ (self xWorld * (2 ** aZoomLevel) / self tileSize ) asInteger
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> xWorld [
 	^ ((self longitude + 180)/360) * self tileSize
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> yPixelInTileWithZoom: aZoomLevel [
 	^ (self yPixelWithZoom: aZoomLevel) - ((self tileSize) * (self yTileWithZoom: aZoomLevel))
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> yPixelWithOffset: offsetY withZoom: zoom [
 	^ (((self yTileWithZoom: zoom) - offsetY ) * self tileSize) + (self yPixelInTileWithZoom: zoom)
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> yPixelWithZoom: aZoomLevel [
 	^ (self yWorld * (2 ** aZoomLevel)) asInteger
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> yTileWithZoom: aZoomLevel [
 	^ (self yWorld * (2 ** aZoomLevel) / self tileSize ) asInteger
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCPoint >> yWorld [
 	| siny lnValue |
 	siny := ((self latitude * Float pi )/180) sin.

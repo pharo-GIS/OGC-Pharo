@@ -1,6 +1,6 @@
-Extension { #name : #OGCGeometryCollection }
+Extension { #name : 'OGCGeometryCollection' }
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCGeometryCollection >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	| morph |
 	morph := ImageMorph new.

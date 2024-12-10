@@ -1,6 +1,6 @@
-Extension { #name : #OGCFeature }
+Extension { #name : 'OGCFeature' }
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCFeature >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue [
 	| morph |
 	morph := self geometry displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue.
@@ -8,7 +8,7 @@ OGCFeature >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue [
 	^ morph
 ]
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCFeature >> handleClick [
 	" at click on my morph: open window with properties "
 	| textToDisplay |

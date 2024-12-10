@@ -1,6 +1,6 @@
-Extension { #name : #OGCFeatureCollection }
+Extension { #name : 'OGCFeatureCollection' }
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCFeatureCollection >> displayWithZoom: aZoom offsetX: aXValue offsetY: aYValue [
 	| morph initialOffsetX initialOffsetY |
 	initialOffsetX := (self rectangularTileEnvelopeWithZoom: aZoom) origin x.

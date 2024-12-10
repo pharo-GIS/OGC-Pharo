@@ -1,6 +1,6 @@
-Extension { #name : #OGCCurve }
+Extension { #name : 'OGCCurve' }
 
-{ #category : #'*OGC-Viewer' }
+{ #category : '*OGC-Viewer' }
 OGCCurve >> displayWithZoom: zoom offsetX: offsetX offsetY: offsetY [
 	| allXPixel allYPixel surface amplitudeX amplitudeY initialOffsetX initialOffsetY coordInit coordNext pointInit morph path |
 	" 1. define working surface "
